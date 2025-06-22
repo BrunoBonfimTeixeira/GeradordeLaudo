@@ -13,25 +13,29 @@ document.querySelector('.login-form').addEventListener('submit', async (e) => {
   const senha = document.getElementById('senha').value;
 
   if (!identificador || !senha) {
-    alert("Preencha todos os campos.");
+    alert("⚠️ Preencha todos os campos.");
     return;
   }
 
   let emailParaLogin = identificador;
 
   try {
+    // Se não for e-mail, tenta buscar pelo CRM ou telefone
     const isEmail = identificador.includes('@');
+
     if (!isEmail) {
       const usersRef = collection(db, "usuarios");
 
-      const q = query(usersRef, where("crm", "==", identificador.toUpperCase()));
-      const crmSnapshot = await getDocs(q);
+      // Procurar por CRM
+      const qCRM = query(usersRef, where("crm", "==", identificador.toUpperCase()));
+      const crmSnapshot = await getDocs(qCRM);
 
       if (!crmSnapshot.empty) {
         emailParaLogin = crmSnapshot.docs[0].data().email;
       } else {
-        const q2 = query(usersRef, where("telefone", "==", identificador));
-        const telSnapshot = await getDocs(q2);
+        // Procurar por telefone
+        const qTelefone = query(usersRef, where("telefone", "==", identificador));
+        const telSnapshot = await getDocs(qTelefone);
 
         if (!telSnapshot.empty) {
           emailParaLogin = telSnapshot.docs[0].data().email;
@@ -41,37 +45,45 @@ document.querySelector('.login-form').addEventListener('submit', async (e) => {
       }
     }
 
+    // Tenta fazer login com email recuperado
     const userCredential = await signInWithEmailAndPassword(auth, emailParaLogin, senha);
     const user = userCredential.user;
 
+    // Verifica se o e-mail está confirmado
     if (!user.emailVerified) {
       alert("⚠️ Verifique seu e-mail antes de acessar o sistema.");
-      window.location.href = "https://brunobonfimteixeira.github.io/GeradordeLaudo/verificarEmail/verificar.html";
+      window.location.href = "../verificarEmail/verificar.html";
       return;
     }
 
+    // Verifica se o pagamento foi feito
     const docRef = doc(db, "usuarios", user.uid);
     const docSnap = await getDoc(docRef);
 
     if (!docSnap.exists() || docSnap.data().pagou !== true) {
-      window.location.href = "https://brunobonfimteixeira.github.io/GeradordeLaudo/telaPagar/pagar.html";
+      window.location.href = "../telaPagar/pagar.html";
       return;
     }
 
     alert("✅ Login realizado com sucesso!");
-    window.location.href = "https://brunobonfimteixeira.github.io/GeradordeLaudo/principal/laudo.html";
+    window.location.href = "../principal/laudo.html";
 
   } catch (error) {
-    console.error(error);
-    console.error(error.message); // Sugestão extra
+    console.error("Erro no login:", error);
+
     let msg = "Erro ao fazer login.";
-    if (error.code === "auth/user-not-found") {
-      msg = "Usuário não encontrado.";
-    } else if (error.code === "auth/wrong-password") {
-      msg = "Senha incorreta.";
-    } else if (error.code === "auth/invalid-email") {
-      msg = "Identificador inválido.";
+    switch (error.code) {
+      case "auth/user-not-found":
+        msg = "Usuário não encontrado.";
+        break;
+      case "auth/wrong-password":
+        msg = "Senha incorreta.";
+        break;
+      case "auth/invalid-email":
+        msg = "Identificador inválido.";
+        break;
     }
+
     alert("❌ " + msg);
   }
 });
