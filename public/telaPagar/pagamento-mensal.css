@@ -1,69 +1,111 @@
+body {
+  margin: 0;
+  padding: 0;
+  font-family: 'Segoe UI', sans-serif;
+  background-color: #f4f6f8;
+}
+
 .pagamento-wrapper {
-  max-width: 400px;
-  margin: 50px auto;
+  max-width: 420px;
+  margin: 60px auto;
   padding: 30px;
+  background: #ffffff;
   border-radius: 12px;
-  background: #fff;
-  box-shadow: 0 4px 12px rgba(0,0,0,0.1);
-  font-family: Arial, sans-serif;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+  position: relative;
+  box-sizing: border-box;
 }
 
 .formulario-pagamento h2 {
+  margin-top: 0;
   margin-bottom: 10px;
-  font-size: 22px;
+  font-size: 24px;
+  color: #222;
+  text-align: center;
 }
 
 .subtitulo {
+  font-size: 15px;
   margin-bottom: 20px;
-  color: #444;
+  color: #555;
+  text-align: center;
 }
 
-input {
+input[type="text"],
+input[type="email"] {
   width: 100%;
-  margin-bottom: 12px;
-  padding: 10px;
-  border: 1px solid #ddd;
-  border-radius: 6px;
+  padding: 10px 12px;
+  border: 1px solid #ccc;
+  border-radius: 8px;
+  margin-bottom: 15px;
+  font-size: 14px;
+  box-sizing: border-box;
+  transition: border-color 0.3s ease;
+}
+
+input:focus {
+  border-color: #00b894;
+  outline: none;
+}
+
+.inline {
+  display: flex;
+  gap: 10px;
 }
 
 .inline input {
-  width: 48%;
-  display: inline-block;
+  flex: 1;
 }
 
 .qrcode-section {
   text-align: center;
-  margin-top: 20px;
+  margin-top: 25px;
 }
 
 .qrcode-img {
-  width: 200px;
-  margin-bottom: 10px;
+  width: 220px;
+  max-width: 100%;
+  margin: 10px auto;
+  border-radius: 8px;
+  box-shadow: 0 2px 8px rgba(0,0,0,0.05);
 }
 
 .mercado-pago-btn {
   display: block;
+  width: 100%;
   text-align: center;
   background-color: #009ee3;
   color: white;
   text-decoration: none;
   padding: 12px;
   border-radius: 8px;
-  margin-top: 15px;
+  margin-top: 20px;
+  font-size: 16px;
+  font-weight: 600;
+  transition: background-color 0.3s ease;
+}
+
+.mercado-pago-btn:hover {
+  background-color: #007bbd;
 }
 
 .fechar {
   position: absolute;
   top: 15px;
   right: 20px;
-  color: #333;
+  color: #555;
   text-decoration: none;
   font-size: 18px;
+  transition: color 0.3s ease;
+}
+
+.fechar:hover {
+  color: #000;
 }
 
 .powered {
   font-size: 12px;
-  color: #999;
+  color: #aaa;
   text-align: center;
-  margin-top: 20px;
+  margin-top: 25px;
 }

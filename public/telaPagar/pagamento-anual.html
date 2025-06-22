@@ -7,29 +7,41 @@
   <meta http-equiv="Content-Security-Policy" content="default-src 'self'; font-src 'self' https://fonts.gstatic.com https://cdnjs.cloudflare.com; style-src 'self' https://fonts.googleapis.com https://cdnjs.cloudflare.com;">
   
   <title>Pagamento Anual</title>
-  <link rel="stylesheet" href="pagamento-anual.css">
+  <link rel="stylesheet" href="pagamento-anual.css" />
 
   <!-- Font Awesome -->
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" crossorigin="anonymous" referrerpolicy="no-referrer" />
+  <link
+    rel="stylesheet"
+    href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css"
+    crossorigin="anonymous"
+    referrerpolicy="no-referrer"
+  />
 </head>
 <body>
-  <div class="pagamento-container">
-    <a href="pagar.html" class="fechar-btn" title="Voltar">
+  <main class="pagamento-container">
+    
+    <!-- Botão Voltar -->
+    <a href="pagar.html" class="fechar-btn" title="Voltar para página anterior">
       <i class="fas fa-arrow-left"></i> Voltar
     </a>
 
-    <div class="caixa-pagamento">
+    <!-- Caixa de Pagamento -->
+    <section class="caixa-pagamento">
       <h2><i class="fas fa-credit-card"></i> Pagamento Anual</h2>
-      <p class="descricao">Assinatura anual do sistema - R$2400,00</p>
+      <p class="descricao">Assinatura anual do sistema - <strong>R$ 2.400,00</strong></p>
 
-      <!-- QR Code -->
+      <!-- QR Code PIX -->
       <div class="qrcode-section">
         <h3>Ou pague via PIX (Nubank)</h3>
-        <img src="../imagem/Qrcode2400.png" alt="QR Code Nubank" class="qrcode-img" />
-        <p>Valor: R$2400,00</p>
+        <img
+          src="../imagem/Qrcode2400.png"
+          alt="QR Code para pagamento de R$2400 via PIX Nubank"
+          class="qrcode-img"
+        />
+        <p><strong>Valor:</strong> R$ 2.400,00</p>
         <p class="pix-aviso">Após o pagamento, o acesso será liberado automaticamente.</p>
       </div>
-    </div>
-  </div>
+    </section>
+  </main>
 </body>
 </html>

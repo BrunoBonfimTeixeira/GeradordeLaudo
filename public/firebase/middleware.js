@@ -8,7 +8,7 @@ import {
   getDoc
 } from "https://www.gstatic.com/firebasejs/10.12.2/firebase-firestore.js";
 
-export function protegerPagina({ redirecionarPara = "../index.html", aoNegarPagamento = "../telaPagar/pagar.html" }) {
+export function protegerPagina({ redirecionarPara = "../login/login.html", aoNegarPagamento = "../telaPagar/pagar.html" }) {
   onAuthStateChanged(auth, async (user) => {
     if (!user) {
       window.location.href = redirecionarPara;

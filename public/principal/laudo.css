@@ -1,352 +1,197 @@
-/* Container geral */
-.container {
-    display: flex;
-    min-height: 100vh;
-    background-color: #eaeaea; /* Fundo claro */
-    font-family: 'Roboto', sans-serif; /* Fonte moderna */
-    transition: background-color 0.3s ease;
-}
+/* ------------------------- GERAL ------------------------- */
 
-/* Painel lateral (sempre aberto) */
-.side-panel {
-    width: 250px; /* Largura fixa */
-    height: 100%;
-    position: fixed;
-    left: 0;
-    top: 0;
-    background-color: #2c503b; /* Cor de fundo mais sóbria */
-    color: #ecf0f1; /* Texto claro */
-    overflow: hidden;
-    padding: 40px 25px;
-    box-sizing: border-box;
-    z-index: 1000;
-    display: flex;
-    flex-direction: column;
-    justify-content: flex-start;
-    transition: transform 0.3s ease;
-    box-shadow: 2px 0px 10px rgba(0, 0, 0, 0.1); /* Sombra leve */
-}
-
-/* Cabeçalho do painel lateral - Avatar + Nome do usuário */
-#userInfo {
-    text-align: center;
-    margin-bottom: 30px;
-}
-
-/* Avatar */
-#userAvatar {
-    font-size: 48px; /* Tamanho maior */
-    margin-bottom: 15px;
-    background-color: #fff;
-    padding: 12px;
-    border-radius: 50%;
-    color: #2c3e50;
-    box-shadow: 0px 5px 15px rgba(0, 0, 0, 0.1); /* Sombra mais suave */
-    transition: transform 0.3s ease;
-}
-
-#userAvatar:hover {
-    transform: scale(1.1); /* Efeito de hover para dar um toque moderno */
-}
-
-/* Nome e E-mail do Usuário */
-#userName, #userEmail {
-    margin: 10px 0;
-    font-size: 18px;
-    font-weight: 500;
-    text-transform: capitalize;
-    transition: color 0.3s ease;
-}
-
-#userName {
-    color: #ecf0f1;
-}
-
-#userEmail {
-    color: #bdc3c7;
-    font-size: 15px;
-}
-
-/* Barra de separação e título de cálculo */
-.separator {
-    border: 1;
-    border-top: 1px solid #34495e; /* Cor de separação mais moderna */
-    margin: 30px 0;
-}
-
-/* Título do cálculo */
-.calculate-function {
-    text-align: center;
-    color: #ecf0f1;
-    font-size: 16px;
-    font-weight: 600;
-    letter-spacing: 1px;
-    text-transform: uppercase;
-    margin-bottom: 20px;
-}
-
-/* Estilos do botão */
-.compare-btn {
-    margin: 10px auto;
-    padding: 12px 20px;
-    background-color: transparent; /* Botão transparente */
-    color: #f39c12; /* Cor da seta e do texto */
-    border: 2px solid #f39c12; /* Borda sutil */
-    border-radius: 50px; /* Bordas arredondadas */
-    font-size: 16px;
-    font-weight: bold;
-    cursor: pointer;
-    transition: background-color 0.3s ease, transform 0.3s ease, color 0.3s ease;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    text-transform: uppercase;
-    letter-spacing: 1px;
-}
-
-/* Ícone de seta dentro do botão */
-.compare-btn::before {
-    content: "↓"; /* Símbolo da seta */
-    font-size: 20px;
-    margin-right: 8px;
-}
-
-/* Hover do botão */
-.compare-btn:hover {
-    background-color: #f39c12; /* Cor de fundo ao passar o mouse */
-    color: #fff; /* Cor do texto muda para branco */
-    transform: translateY(-2px); /* Efeito sutil de elevação */
-    border-color: #f1c40f; /* Borda fica mais clara */
-}
-
-/* Efeito de foco do botão */
-.compare-btn:focus {
-    outline: none; /* Remover borda de foco padrão */
-    box-shadow: 0 0 5px rgba(243, 156, 18, 0.7); /* Adicionar uma sombra suave no foco */
-}
-
-/* Estilos da referência */
-.reference {
-    display: none; /* Inicialmente escondido */
-    text-align: center;
-    margin-top: 20px;
-    color: #ecf0f1;
-    font-size: 16px;
-    font-weight: 600;
-    letter-spacing: 1px;
-}
-
-.reference-btn {
-    margin: 10px auto;
-    padding: 12px 20px;
-    background-color: #f39c12;
-    color: #fff;
-    border: none;
-    border-radius: 5px;
-    font-size: 16px;
-    font-weight: bold;
-    cursor: pointer;
-    transition: background-color 0.3s ease, transform 0.3s ease;
-    display: block;
-    text-align: center;
-}
-
-/* Hover do botão de Referência */
-.reference-btn:hover {
-    background-color: #f1c40f;
-    transform: translateY(-2px); /* Efeito de elevação */
-}
-
-/* Estilos do conteúdo principal */
-.main-content {
-    margin-left: 260px; /* Ajuste para o conteúdo não ficar por trás do painel */
-    padding: 30px;
-    flex-grow: 1;
-    background-color: #f9f9f9; /* Fundo claro para o conteúdo */
-    transition: margin-left 0.3s ease;
-}
-
-/* Estilização do título principal */
-h1 {
-    font-size: 2.5rem;
-    font-weight: 600;
-    color: #2c3e50;
-    letter-spacing: 1px;
-    margin-bottom: 20px;
-}
-
-/* Títulos em geral */
-h2, h3, h4 {
-    font-weight: 500;
-    color: #ffffff;
-}
-
-/* Textos informativos */
-p {
-    font-size: 1rem;
-    color: #7f8c8d; /* Cor de texto mais suave */
-    line-height: 1.6;
-}
-
-/* Rodapé */
-footer {
-    text-align: center;
-    padding: 20px;
-    background-color: #2c3e50;
-    color: #ecf0f1;
-    position: fixed;
-    bottom: 0;
-    width: 100%;
-}
-
-/* Animação de transição suave ao carregar a página */
 body {
-    opacity: 0;
-    animation: fadeIn 1s ease-in-out forwards;
+  font-family: 'Roboto', sans-serif;
+  background-color: #eaeaea;
+  animation: fadeIn 1s ease-in-out forwards;
+  opacity: 0;
+  margin: 0;
 }
 
 @keyframes fadeIn {
-    from {
-        opacity: 0;
-    }
-    to {
-        opacity: 1;
-    }
+  from { opacity: 0; }
+  to { opacity: 1; }
 }
 
-/* Estilo do botão RM CORAÇÃO */
+.container {
+  display: flex;
+  min-height: 100vh;
+}
+
+/* ------------------------- PAINEL LATERAL ------------------------- */
+
+.side-panel {
+  width: 250px;
+  height: 100%;
+  position: fixed;
+  left: 0;
+  top: 0;
+  background-color: #2c503b;
+  color: #ecf0f1;
+  padding: 40px 25px;
+  box-shadow: 2px 0px 10px rgba(0, 0, 0, 0.1);
+  box-sizing: border-box;
+  display: flex;
+  flex-direction: column;
+  z-index: 1000;
+}
+
+#userInfo {
+  text-align: center;
+  margin-bottom: 30px;
+}
+
+#userAvatar {
+  font-size: 48px;
+  margin-bottom: 15px;
+  background-color: #fff;
+  padding: 12px;
+  border-radius: 50%;
+  color: #2c3e50;
+  box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+  transition: transform 0.3s ease;
+}
+
+#userAvatar:hover {
+  transform: scale(1.1);
+}
+
+#userName, #userEmail {
+  margin: 10px 0;
+  text-transform: capitalize;
+  font-weight: 500;
+  transition: color 0.3s ease;
+}
+
+#userName {
+  font-size: 18px;
+  color: #ecf0f1;
+}
+
+#userEmail {
+  font-size: 15px;
+  color: #bdc3c7;
+}
+
+.separator {
+  border-top: 1px solid #34495e;
+  margin: 30px 0;
+}
+
+.calculate-function,
+.reference {
+  text-align: center;
+  color: #ecf0f1;
+  font-size: 16px;
+  font-weight: 600;
+  letter-spacing: 1px;
+  text-transform: uppercase;
+  margin-bottom: 20px;
+}
+
+.reference {
+  display: none;
+  margin-top: 20px;
+}
+
+/* ------------------------- BOTÕES ------------------------- */
+
+.compare-btn,
+.heart-btn,
+.reference-btn,
+.routine-btn,
+.logout-btn {
+  padding: 12px 20px;
+  border-radius: 50px;
+  font-size: 16px;
+  font-weight: bold;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.compare-btn {
+  background-color: transparent;
+  color: #f39c12;
+  border: 2px solid #f39c12;
+}
+
+.compare-btn::before {
+  content: "↓";
+  font-size: 20px;
+  margin-right: 8px;
+}
+
+.compare-btn:hover {
+  background-color: #f39c12;
+  color: #fff;
+  transform: translateY(-2px);
+  border-color: #f1c40f;
+}
+
 .heart-btn {
-    margin: 20px auto;
-    padding: 12px 20px;
-    background-color: transparent;
-    color: #e74c3c; /* Cor do coração */
-    border: 2px solid #e74c3c;
-    border-radius: 50px;
-    font-size: 16px;
-    font-weight: bold;
-    cursor: pointer;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    text-transform: uppercase;
-    letter-spacing: 1px;
-    transition: background-color 0.3s ease, transform 0.3s ease, color 0.3s ease;
+  margin: 20px auto;
+  background-color: transparent;
+  color: #e74c3c;
+  border: 2px solid #e74c3c;
 }
 
 .heart-btn::before {
-    content: "❤️ "; /* Símbolo do coração */
-    font-size: 20px;
-    margin-right: 8px;
+  content: "❤️ ";
+  font-size: 20px;
+  margin-right: 8px;
 }
 
-/* Efeito de hover no botão RM CORAÇÃO */
 .heart-btn:hover {
-    background-color: #e74c3c;
-    color: white;
-    transform: translateY(-2px);
-    border-color: #c0392b;
+  background-color: #e74c3c;
+  color: white;
+  transform: translateY(-2px);
+  border-color: #c0392b;
 }
 
-/* Estilo dos botões de rotina */
+.reference-btn {
+  background-color: #f39c12;
+  color: white;
+  border: none;
+  border-radius: 5px;
+}
+
+.reference-btn:hover {
+  background-color: #f1c40f;
+  transform: translateY(-2px);
+}
+
 .routine-buttons {
-    display: flex;
-    flex-direction: column;
-    margin-top: 20px;
+  display: flex;
+  flex-direction: column;
+  margin-top: 20px;
 }
 
 .routine-btn {
-    padding: 12px 20px;
-    background-color: #3498db; /* Azul para os botões */
-    color: white;
-    border: none;
-    border-radius: 5px;
-    font-size: 16px;
-    cursor: pointer;
-    margin-bottom: 10px;
-    transition: background-color 0.3s ease, transform 0.3s ease;
+  background-color: #3498db;
+  color: white;
+  border: none;
+  border-radius: 5px;
+  margin-bottom: 10px;
 }
 
-/* Efeito de hover nos botões de rotina */
 .routine-btn:hover {
-    background-color: #2980b9;
-    transform: translateY(-2px);
-}
-
-/* Estilos do painel lateral e conteúdo principal */
-.side-panel {
-    background-color: #2c503b; /* Cor mais sóbria para o painel */
-}
-
-
-/* Conteúdo Principal */
-.main-content {
-    margin-left: 260px;
-    padding: 30px;
-    flex-grow: 1;
-    background-color: #f9f9f9;
-    transition: margin-left 0.3s ease;
-}
-
-/* Títulos em geral */
-h1 {
-    font-size: 2.5rem;
-    font-weight: 600;
-    color: #2c3e50;
-    letter-spacing: 1px;
-    margin-bottom: 20px;
-}
-
-/* Retângulos (caixas de informações) */
-.patient-info {
-    display: flex;
-    justify-content: space-between;
-    margin-bottom: 30px;
-}
-
-/* Estilo do retângulo de informações do paciente */
-.info-box {
-    width: 48%;
-    background-color: #fff;
-    padding: 20px;
-    border-radius: 10px;
-    box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.1);
-    color: #2c3e50;
-}
-
-.info-box h2 {
-    font-size: 1.5rem;
-    font-weight: 600;
-    color: #34495e;
-}
-
-.info-box p {
-    font-size: 1rem;
-    color: #7f8c8d;
-}
-
-/* Estilo do retângulo para o gráfico */
-.chart-box {
-    width: 48%;
-    background-color: #fff;
-    padding: 20px;
-    border-radius: 10px;
-    box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.1);
-    text-align: center;
+  background-color: #2980b9;
+  transform: translateY(-2px);
 }
 
 .logout-btn {
   background-color: #e63946;
-  color: #fff;
-  padding: 12px 20px;
+  color: white;
   border: none;
   border-radius: 8px;
-  font-size: 16px;
-  font-weight: 600;
-  cursor: pointer;
-  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
-  transition: background-color 0.3s ease, transform 0.2s ease;
   width: 100%;
   margin-top: 20px;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
 }
 
 .logout-btn:hover {
@@ -355,6 +200,75 @@ h1 {
 }
 
 .logout-btn:active {
-  transform: scale(0.98);
   background-color: #b71c1c;
+  transform: scale(0.98);
+}
+
+/* ------------------------- CONTEÚDO PRINCIPAL ------------------------- */
+
+.main-content {
+  margin-left: 260px;
+  padding: 30px;
+  flex-grow: 1;
+  background-color: #f9f9f9;
+  transition: margin-left 0.3s ease;
+}
+
+h1 {
+  font-size: 2.5rem;
+  font-weight: 600;
+  color: #2c3e50;
+  letter-spacing: 1px;
+  margin-bottom: 20px;
+}
+
+h2, h3, h4 {
+  font-weight: 500;
+  color: #ffffff;
+}
+
+p {
+  font-size: 1rem;
+  color: #7f8c8d;
+  line-height: 1.6;
+}
+
+/* ------------------------- INFORMAÇÕES DO PACIENTE ------------------------- */
+
+.patient-info {
+  display: flex;
+  justify-content: space-between;
+  margin-bottom: 30px;
+}
+
+.info-box, .chart-box {
+  width: 48%;
+  background-color: #fff;
+  padding: 20px;
+  border-radius: 10px;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+  color: #2c3e50;
+}
+
+.info-box h2 {
+  font-size: 1.5rem;
+  font-weight: 600;
+  color: #34495e;
+}
+
+.info-box p {
+  font-size: 1rem;
+  color: #7f8c8d;
+}
+
+/* ------------------------- RODAPÉ ------------------------- */
+
+footer {
+  text-align: center;
+  padding: 20px;
+  background-color: #2c3e50;
+  color: #ecf0f1;
+  position: fixed;
+  bottom: 0;
+  width: 100%;
 }

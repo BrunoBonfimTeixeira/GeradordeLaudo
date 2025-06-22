@@ -5,68 +5,172 @@
   box-sizing: border-box;
 }
 
-/* Corpo da página */
 body {
   font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
   background-color: #f0f4f8;
-  margin: 0;
-  padding: 20px;
+  display: flex;
+  justify-content: flex-start;
+  gap: 2rem;
+  flex-wrap: wrap;
+  flex-direction: row;
 }
 
-/* Container principal */
-.container {
-  max-width: 1200px;
-  margin: auto;
+.wrapper {
+  display: flex;
+  width: 100%;
+  gap: 10px;
+}
+
+.main-container {
+  width: 65%;
+  padding-left: 15px;
+  padding-top: 5px;
+  box-sizing: border-box;
+}
+
+.copy-container {
+  width: 35%;
+  display: flex;
+  justify-content: flex-end;
+  align-items: flex-start;
+  box-sizing: border-box;
+}
+
+.container-cadastro {
+  padding-left: 1%;
+  display: flex;
+  flex-direction: row;
+  justify-content: flex-start;
+  max-width: 50%;
+  height: max-content;
+  flex-wrap: wrap;
+}
+
+.container-cadastro .form-row {
+  flex: 1;
+  margin-right: 0;
+}
+
+.container-cadastro .form-row:last-child {
+  margin-right: 0;
+}
+
+.container-cadastro .form-row input {
+  width: 50%;
+  padding: 6px;
+  margin-bottom: 8px;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+}
+
+.container-cadastro label {
+  font-size: 0.875rem;
+  margin-bottom: 5px;
+}
+
+.form-row-name input {
+  width: 20%;
+}
+
+.patient-info form {
+  display: flex;
+  justify-content: flex-start;
+  gap: 1rem;
+  flex-wrap: wrap;
+}
+
+.patient-info form input {
+  padding: 6px;
+  font-size: 1rem;
+}
+
+.container-planilha,
+.container-VEesquerdo,
+.containerVDdireito,
+.containerAE,
+.container-ADdireito {
+  width: 93%;
   background: #fff;
-  padding: 30px;
-  border-radius: 12px;
-  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+  padding: 1rem;
+  border-radius: 8px;
+  box-shadow: 0 0 0.625rem rgba(0, 0, 0, 0.1);
+  display: flex;
+  flex-direction: column;
+  height: max-content;
 }
 
-/* Títulos */
+.container-botaoGeradordeTexto {
+  width: 38%;
+  background: #fff;
+  padding: 1rem;
+  border-radius: 8px;
+  box-shadow: 0 0 0.625rem rgba(0, 0, 0, 0.1);
+  display: flex;
+  flex-direction: column;
+  height: max-content;
+}
+
+.container-direitos {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+}
+
+.summary {
+  width: 100%;
+  padding-left: 1.25rem;
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+}
+
+.patient-title,
+.planilha-titulo {
+  padding-left: 10%;
+  font-size: 15px;
+}
+
 h1, h2 {
   color: #034a74;
   text-align: center;
 }
 
-/* Estilo do formulário */
 form label {
   display: block;
-  margin: 10px 0 5px;
+  margin: 1rem 0 0.5rem;
   color: #555;
 }
 
 form input {
   width: 100%;
-  padding: 8px;
-  border-radius: 6px;
+  padding: 0.5rem;
+  border-radius: 0.375rem;
   border: 1px solid #ccc;
-  margin-bottom: 15px;
-  font-size: 16px;
+  margin-bottom: 1rem;
+  font-size: 1rem;
 }
 
 form button {
   background-color: #034a74;
   color: #fff;
   border: none;
-  padding: 10px 20px;
-  border-radius: 8px;
+  padding: 0.625rem 1.25rem;
+  border-radius: 0.5rem;
   cursor: pointer;
   display: block;
-  margin-top: 15px;
+  margin-top: 1rem;
   width: 100%;
-  font-size: 16px;
+  font-size: 1rem;
 }
 
 form button:hover {
   background-color: #0288d1;
 }
 
-/* Tabela de volumes cardíacos */
 table {
   width: 100%;
   border-collapse: collapse;
-  margin-top: 20px;
+  margin-top: 1.25rem;
 }
 
 table thead {
@@ -75,54 +179,41 @@ table thead {
 }
 
 table th, table td {
-  padding: 10px;
+  padding: 0.625rem;
   border: 1px solid #ccc;
   text-align: center;
-  font-size: 16px;
+  font-size: 1rem;
 }
 
 table td input {
   width: 90%;
-  padding: 6px;
+  padding: 0.375rem;
   text-align: center;
-  border-radius: 4px;
+  border-radius: 0.25rem;
   border: 1px solid #ccc;
-  font-size: 16px;
+  font-size: 1rem;
 }
 
-/* Rodapé informativo */
 .info-footer {
-  margin-top: 20px;
+  margin-top: 1.25rem;
   color: #666;
-  font-size: 14px;
+  font-size: 0.875rem;
   text-align: center;
 }
 
-/* Estilo do botão Gerar Laudo */
-#generateReportBtn {
-  margin-top: 20px;
-  background-color: #28a745;
-  color: white;
-  border: none;
-  padding: 10px 20px;
-  border-radius: 8px;
-  cursor: pointer;
-  font-size: 16px;
-  width: 100%;
-}
-
-#generateReportBtn:hover {
-  background-color: #218838;
-}
-
-/* Responsividade para dispositivos menores */
 @media (max-width: 768px) {
   .container {
-    padding: 15px;
+    flex-direction: column;
+    padding: 1rem;
+    width: 100%;
+  }
+
+  .patient-info, .summary {
+    width: 100%;
   }
 
   h1, h2 {
-    font-size: 1.5em;
+    font-size: 1.5rem;
   }
 
   form button, #generateReportBtn {
@@ -130,31 +221,273 @@ table td input {
   }
 
   table th, table td {
-    font-size: 14px;
-    padding: 8px;
+    font-size: 0.875rem;
+    padding: 0.625rem;
+  }
+
+  #reportContainer {
+    position: static;
+    width: 100%;
+    margin-top: 1rem;
+    height: auto;
   }
 }
 
-/* Estilo do botão "Voltar" */
-.back-button {
-  background-color: #034a74;
-  color: #fff;
-  padding: 12px 20px;
-  border: none;
-  border-radius: 8px;
-  cursor: pointer;
-  display: flex;
-  align-items: center;
-  font-size: 16px;
-  text-transform: uppercase;
-  transition: background-color 0.3s ease;
+#reportContainer {
   margin-top: 20px;
 }
 
-.back-button i {
-  margin-right: 10px; /* Espaço entre o ícone e o texto */
+#reportContainer h2 {
+  margin-bottom: 15px;
+  color: #333;
 }
 
-.back-button:hover {
-  background-color: #0288d1;
+#laudoText {
+  width: 100%;
+  height: 450px;
+  padding: 15px;
+  font-size: 14px;
+  resize: vertical;
+  box-sizing: border-box;
+  font-family: Arial, sans-serif;
+  line-height: 1.5;
+}
+
+#generateReportBtn {
+  background-color: #28a745;
+  color: white;
+  padding: 10px 18px;
+  border: none;
+  border-radius: 6px;
+  cursor: pointer;
+  font-size: 15px;
+  font-weight: 500;
+  margin-top: 20px;
+  box-shadow: 0 2px 6px rgba(40, 167, 69, 0.4);
+  transition: background-color 0.3s ease, transform 0.2s ease;
+}
+
+#generateReportBtn i {
+  margin-right: 6px;
+}
+
+#generateReportBtn:hover {
+  background-color: #1e7e34;
+  transform: translateY(-1px);
+}
+
+.input-azul {
+  background-color: #d0e7ff;
+  border: 1px solid #aaa;
+  padding: 4px;
+  border-radius: 4px;
+}
+
+input[readonly] {
+  background-color: #f9f9f9;
+  border: 1px solid #ccc;
+  color: #333;
+}
+
+.input-manual {
+  background-color: #95c8ff !important;
+}
+
+.input-manual-amarelo {
+  background-color: #e3ff67 !important;
+}
+
+.input-manual-MVVM {
+  background-color: #fc2525 !important;
+}
+
+.input-auto {
+  background-color: #e9ecef !important;
+  pointer-events: none;
+  border: 1px solid #ccc;
+}
+
+.volume-resultado {
+  background-color: #f8f9fa;
+  border: 1px solid #ddd;
+  border-radius: 6px;
+  padding: 0.5rem 0.75rem;
+  margin-bottom: 1rem;
+  font-size: 0.95rem;
+  color: #555;
+}
+
+.volume-display {
+  display: inline-block;
+  margin-left: 8px;
+  font-weight: bold;
+  color: #888;
+}
+
+.h1VolAE {
+  color: #034a74;
+  text-align: center;
+  margin-bottom: 1rem;
+  font-size: 1.5rem;
+  font-weight: bold;
+}
+
+input.input-manual::placeholder {
+  color: #fff;
+  font-style: italic;
+  font-size: 0.95rem;
+  opacity: 1;
+  font-weight: bold;
+}
+
+.modal {
+  display: none;
+  position: fixed;
+  z-index: 1000;
+  top: 0;
+  right: 0;
+  width: 39%;
+  height: 100%;
+  background-color: rgba(247, 245, 245, 0);
+  justify-content: flex-end;
+  align-items: flex-start;
+  padding-top: 1;
+}
+
+.modal-content {
+  background-color: rgb(255, 249, 249);
+  padding: 5px;
+  border-radius: 12px 0 0 12px;
+  width: 100%;
+  height: 100%;
+  overflow-y: auto;
+  box-shadow: -4px 0 20px rgb(241, 241, 241);
+  position: relative;
+}
+
+.modal-content textarea {
+  width: 100%;
+  resize: vertical;
+  font-size: 1rem;
+  padding: 5px;
+  box-sizing: border-box;
+}
+
+.close {
+  position: absolute;
+  top: 10px;
+  right: 16px;
+  font-size: 1.5rem;
+  font-weight: bold;
+  color: #555;
+  cursor: pointer;
+}
+
+.copy-container {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-top: 1rem;
+}
+
+#copyStatus {
+  margin-left: 1rem;
+  font-weight: bold;
+}
+
+#reportContainer textarea {
+  width: 100%;
+  height: 400px;
+  padding: 10px;
+  font-size: 14px;
+  resize: vertical;
+  box-sizing: border-box;
+}
+
+.btn-voltar {
+  height: 34px;
+  display: inline-block;
+  padding: 8px 16px 0px 10px;
+  background-color: #007BFF;
+  color: white;
+  text-decoration: none;
+  border-radius: 6px;
+  font-weight: bold;
+  font-size: 14px;
+  transition: background-color 0.3s ease;
+}
+
+.btn-voltar:hover {
+  background-color: #0056b3;
+}
+
+.btn-voltar i {
+  margin-right: 4px;
+}
+
+.form-row-group {
+  display: flex;
+  gap: 4px;
+  flex-wrap: wrap;
+  align-items: flex-end;
+  padding-left: 15px;
+  padding-bottom: 2%;
+}
+
+.form-row-name {
+  flex: 2;
+  display: flex;
+  flex-direction: column;
+}
+
+.form-row-idade,
+.form-row-peso,
+.form-row-altura {
+  width: 50px;
+}
+
+.form-row {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  min-width: 80px;
+}
+
+.form-row-name input,
+.form-row {
+  margin: 0;
+  padding: 0;
+}
+
+label {
+  margin-bottom: 4px;
+  font-weight: 500;
+  font-size: 14px;
+}
+
+.btn-expandir {
+  background-color: #007bff;
+  color: white;
+  padding: 8px 14px;
+  border: none;
+  border-radius: 8px;
+  font-size: 15px;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  margin-bottom: 10px;
+  transition: background-color 0.3s;
+}
+
+.btn-expandir:hover {
+  background-color: #0056b3;
+}
+
+.conteudo-escondido {
+  display: none;
+  padding: 10px;
+  border-left: 4px solid #007bff;
+  background: #f9f9f9;
+  border-radius: 6px;
 }

@@ -6,37 +6,52 @@
     <title>Planilha Cardíaca</title>
     <link rel="stylesheet" href="mulher.css" />
     <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css" rel="stylesheet">
-
 </head>
 <body>
-      <!-- Botão Voltar -->
-    </div>
-    <div class="container">
-<button onclick="window.location.href='../principal/laudo.html';" class="back-button">
-  <i class="fas fa-arrow-left"></i> Voltar
-</button>
+  <div class="wrapper">
 
-        <h1>Cadastro de Paciente</h1>
+    <div class="main-container">
 
-        <div class="patient-info">
-            <h2>Informações do Paciente (MULHER)</h2>
-            <form id="patientForm">
-                <label for="name">Nome:</label>
-                <input type="text" id="name" name="name" required>
 
-                <label for="age">Idade:</label>
-                <input type="number" id="age" name="age" required>
-
-                <label for="weight">Peso (kg):</label>
-                <input type="number" id="weight" name="weight" required>
-
-                <label for="height">Altura (cm):</label>
-                <input type="number" id="height" name="height" required>
-            </form>
+    <!-- Container de Cadastro de Paciente -->
+    <div class="container-cadastro">
+  
+  <div class="patient-info">
+    <form id="patientForm">
+      
+      <div class="form-row-group">
+        <a href="../principal/laudo.html" class="btn-voltar">
+    <i class="fas fa-arrow-left"></i> Voltar
+  </a>
+        <div class="form-row-name">
+          <label for="name">Nome:</label>
+          <input type="text" id="name" name="name" required>
         </div>
+        <div class="form-row-idade">
+          <label for="age">Idade:</label>
+          <input type="number" id="age" name="age" required>
+        </div>
+        <div class="form-row-peso">
+          <label for="weight">Peso (kg):</label>
+          <input type="number" id="weight" name="weight" required>
+        </div>
+        <div class="form-row-altura">
+          <label for="height">Altura (cm):</label>
+          <input type="number" id="height" name="height" required>
+        </div>
+      </div>
+    </form>
+  </div>
+</div>
+      
 
+  
+
+
+    <!-- Container de Volumes Cardíacos -->
+    <div class="container-planilha">
+        <h2 class="planilha-titulo">Planilha de Volumes Cardíacos</h2>
         <div class="summary">
-            <h2>Planilha de Volumes Cardíacos</h2>
             <table id="cardiacVolumeTable">
                 <thead>
                     <tr>
@@ -52,11 +67,12 @@
                         <th>9</th>
                         <th>10</th>
                         <th>11</th>
+                        <th>Total</th>
                     </tr>
                 </thead>
                 <tbody>
                     <tr>
-                        <th>VE VDF Endo</th>
+                        <th> VE VDF Endo</th>
                         <td><input type="number" class="volume-input" data-row="1"></td>
                         <td><input type="number" class="volume-input" data-row="2"></td>
                         <td><input type="number" class="volume-input" data-row="3"></td>
@@ -68,6 +84,8 @@
                         <td><input type="number" class="volume-input" data-row="9"></td>
                         <td><input type="number" class="volume-input" data-row="10"></td>
                         <td><input type="number" class="volume-input" data-row="11"></td>
+                        <td><span></span></td> <!-- Para mostrar o Total -->
+
                     </tr>
                     <tr>
                         <th>VE VDF Epi</th>
@@ -82,6 +100,8 @@
                         <td><input type="number" class="volume-input" data-row="9"></td>
                         <td><input type="number" class="volume-input" data-row="10"></td>
                         <td><input type="number" class="volume-input" data-row="11"></td>
+                        <td><span></span></td> <!-- Para mostrar o Total -->
+
                     </tr>
                     <tr>
                         <th>VD VDF Endo</th>
@@ -96,6 +116,8 @@
                         <td><input type="number" class="volume-input" data-row="9"></td>
                         <td><input type="number" class="volume-input" data-row="10"></td>
                         <td><input type="number" class="volume-input" data-row="11"></td>
+                        <td><span></span></td> <!-- Para mostrar o Total -->
+
                     </tr>
                     <tr>
                         <th>VE VSF Endo</th>
@@ -110,6 +132,8 @@
                         <td><input type="number" class="volume-input" data-row="9"></td>
                         <td><input type="number" class="volume-input" data-row="10"></td>
                         <td><input type="number" class="volume-input" data-row="11"></td>
+                        <td><span></span></td> <!-- Para mostrar o Total -->
+
                     </tr>
                     <tr>
                         <th>VD VSF Endo</th>
@@ -124,16 +148,147 @@
                         <td><input type="number" class="volume-input" data-row="9"></td>
                         <td><input type="number" class="volume-input" data-row="10"></td>
                         <td><input type="number" class="volume-input" data-row="11"></td>
+                        <td><span></span></td> <!-- Para mostrar o Total -->
+
                     </tr>
                 </tbody>
             </table>
-            <p class="info-footer">Preencher os volumes na coluna da esquerda ou colocar a área de cada corte no EC na planilha acima para VE e VD</p>
+                      
         </div>
-
-        <!-- Botão Gerar Laudo -->
-        <button id="generateReportBtn">Gerar Laudo</button>
+        
     </div>
+    
 
-    <script src="mulher.js"></script>
+ 
+    <!-- Ventrículo Esquerdo -->
+<div class="container-VEesquerdo">
+  <div class="bloco">
+    <button id="btnExpandirVE" class="btn-expandir">
+      <i id="iconeSetaVE" class="fas fa-chevron-down"></i> Mostrar Ventrículo Esquerdo
+    </button>
+
+    <div id="conteudoVE" class="conteudo-escondido">
+      <h2>Ventrículo Esquerdo</h2>
+      <div class="diminuir">
+      <table>
+        <tr><th class="input-manual-MVVM">Medida</th><th class="input-manual-MVVM">Valor</th><th class="input-manual-MVVM">Valor Normal</th></tr>
+        <tr><td class="input-manual-amarelo">VDF Endo</td><td class="input-manual-amarelo"><input id="ve-vdf" class="input-auto" readonly></td><td class="input-manual-amarelo">83-207 ml</td></tr>
+        <tr><td>VSF Endo</td><td><input id="ve-vsf" class="input-auto" readonly></td><td>19-88 ml</td></tr>
+        <tr><td class="input-manual-amarelo">VDF indexado</td><td class="input-manual-amarelo"><input id="ve-vdf-index" class="input-auto" readonly></td><td class="input-manual-amarelo">47-107 ml/m²</td></tr>
+        <tr><td class="input-manual-amarelo">VSF indexado</td><td class="input-manual-amarelo"><input id="ve-vsf-index" class="input-auto" readonly></td><td class="input-manual-amarelo">17-59 ml/m²</td></tr>
+        <tr><td class="input-manual-amarelo">FE</td><td class="input-manual-amarelo"><input id="ve-fe" class="input-auto" readonly></td><td class="input-manual-amarelo">&gt; 50%</td></tr>
+        <tr><td>Vol. Ejetado</td><td><input id="ve-vol-ejetado" class="input-auto" readonly></td><td>38-107 ml</td></tr>
+        <tr><td>Vol. Ejetado index</td><td><input id="ve-vol-ejetado-index" class="input-auto" readonly></td><td>30-65 ml/m²</td></tr>
+        <tr><td>DDF</td><td><input id="ve-ddf" class="input-manual"></td><td>≤ 5,8 cm</td></tr>
+        <tr><td>Esp septal basal</td><td><input id="ve-esp-septal" class="input-manual"></td><td>≤ 1,2 cm</td></tr>
+        <tr><td>Esp inferolateral</td><td><input id="ve-esp-inferolateral" class="input-manual"></td><td>≤ 1,2 cm</td></tr>
+        <tr><td class="input-manual-amarelo">Massa</td><td class="input-manual-amarelo"><input id="ve-massa" class="input-auto" readonly></td><td class="input-manual-amarelo">152-262 g</td></tr>
+        <tr><td class="input-manual-amarelo">Massa indexada</td><td class="input-manual-amarelo"><input id="ve-massa-index" class="input-auto" readonly></td><td class="input-manual-amarelo">75-132 g/m²</td></tr>
+        <tr><td>Espessura relativa</td><td><input id="ve-esp-relativa" class="input-auto" readonly></td><td>&lt; 0,42</td></tr>
+        <tr><td>Índice relativa massa</td><td><input id="ve-indice-massa" class="input-auto" readonly></td><td>&lt; 1,0 g/ml</td></tr>
+        <tr><td>Massa RT</td><td><input id="ve-massa-rt" class="input-manual"></td><td><input id="ve-massa-rt-ref"></td></tr>
+        <tr><td>% RT</td><td><input id="ve-percentual-rt" class="input-auto" readonly></td><td><input id="ve-percentual-rt-ref"></td></tr>
+      </table>
+    </div>
+  </div>
+</div>
+</div>
+
+<!-- Ventrículo Direito -->
+<div class="containerVDdireito">
+  <div class="bloco">
+    <button id="btnExpandirVD" class="btn-expandir">
+      <i id="iconeSetaVD" class="fas fa-chevron-down"></i> Mostrar Ventrículo Direito
+    </button>
+
+    <div id="conteudoVD" class="conteudo-escondido">
+      <h2>Ventrículo Direito</h2>
+      <div class="diminuir">
+      <table>
+        <tr><th class="input-manual-MVVM">Medida</th><th class="input-manual-MVVM">Valor</th><th class="input-manual-MVVM">Valor Normal</th></tr>
+        <tr><td class="input-manual-amarelo">VDF Endo</td><td class="input-manual-amarelo"><input></td><td class="input-manual-amarelo">87-244 ml</td></tr>
+        <tr><td>VSF Endo</td><td><input></td><td>29-117 ml</td></tr>
+        <tr><td class="input-manual-amarelo">VDF indexado</td><td class="input-manual-amarelo"><input></td><td class="input-manual-amarelo">53-123 ml/m²</td></tr>
+        <tr><td class="input-manual-amarelo">VSF indexado</td><td class="input-manual-amarelo"><input></td><td class="input-manual-amarelo">17-59 ml/m²</td></tr>
+        <tr><td class="input-manual-amarelo">FE</td><td class="input-manual-amarelo"><input></td><td class="input-manual-amarelo">&gt; 40%</td></tr>
+        <tr><td>Vol. Ejetado</td><td><input></td><td>48-109 ml</td></tr>
+        <tr><td>Vol. Ejetado indexado</td><td><input></td><td>28-75 ml/m²</td></tr>
+      </table>
+    </div>
+  </div>
+</div>
+</div>
+
+<!-- Átrio Esquerdo -->
+<div class="containerAE">
+  <div class="bloco">
+    <button id="btnExpandirAE" class="btn-expandir">
+      <i id="iconeSetaAE" class="fas fa-chevron-down"></i> Mostrar Átrio Esquerdo
+    </button>
+
+    <div id="conteudoAE" class="conteudo-escondido">
+      <div class="resultado-ae">
+        <label class="h1VolAE">Átrio Esquerdo:</label>
+        <span id="volumeAEDisplay" class="volume-display text-muted">Volume: Valor incompleto</span>
+      </div>
+      <div class="diminuir">
+      <table>
+        <tr><th class="input-manual-MVVM">Medida</th><th class="input-manual-MVVM">Valor</th><th class="input-manual-MVVM">Valor Normal</th></tr>
+        <tr><td>Área 4CH</td><td><input id="ae-area4ch" class="input-manual" /></td><td>14-30 cm²</td></tr>
+        <tr><td>Área 2CH</td><td><input id="ae-area2ch" class="input-manual" /></td><td>10-30 cm²</td></tr>
+        <tr><td>Menor eixo longo entre 4CH e 2CH</td><td><input id="ae-eixo-longo" class="input-manual" /></td><td>3,0–5,2 cm</td></tr>
+        <tr><td>Diâmetro AP 3CH</td><td><input id="ae-diametro-ap" class="input-manual" /></td><td>2,3–4,2 cm</td></tr>
+        <tr><td class="input-manual-amarelo">Volume indexado</td><td class="input-manual-amarelo"><input id="ae-volume-index" class="input-auto" readonly /></td><td class="input-manual-amarelo">26–53 ml/m²</td></tr>
+      </table>
+    </div>
+  </div>
+</div>
+</div>
+
+<!-- Átrio Direito -->
+<div class="container-ADdireito">
+  <div class="bloco ad-bloco">
+    <button id="btnExpandirAD" class="btn-expandir">
+      <i id="iconeSetaAD" class="fas fa-chevron-down"></i> Mostrar Átrio Direito
+    </button>
+
+    <div id="conteudoAD" class="conteudo-escondido">
+      <h2>Átrio Direito</h2>
+      <div class="diminuir">
+      <table class="tabela-medidas">
+        <tr><th class="input-manual-MVVM">Medida</th><th class="input-manual-MVVM"> Valor</th><th class="input-manual-MVVM">Valor Normal</th></tr>
+        <tr><td>Área 4CH</td><td><input id="area4CH_AD" class="input-manual volume-input" /></td><td>15–33 cm²</td></tr>
+        <tr><td>Área 2CH</td><td><input id="area2CH_AD" class="input-manual volume-input" /></td><td>14–31 cm²</td></tr>
+        <tr><td>Volume</td><td><input id="volumeAD" class="input-auto" readonly /></td><td>64–154 ml</td></tr>
+        <tr><td class="input-manual-amarelo">Área 4CH index</td><td class="input-manual-amarelo"><input id="areaIndex4CH_AD" class="input-auto" readonly /></td><td class="input-manual-amarelo">7–15 cm²/m²</td></tr>
+        <tr><td class="input-manual-amarelo">Volume index</td><td class="input-manual-amarelo"><input id="volumeIndexAD" class="input-auto" readonly /></td><td class="input-manual-amarelo">33–78 ml/m²</td></tr>
+      </table>
+    </div>
+  </div>
+</div>
+</div>
+
+  <div class="container-botaoGeradordeTexto">
+  <button id="generateReportBtn">
+    <i class="fas fa-file-medical-alt"></i> Gerar Laudo
+  </button>
+
+  <!-- Modal de Laudo -->
+<div id="laudoModal" class="modal">
+  <div class="modal-content">
+    <span id="closeModalBtn" class="close">&times;</span>
+    <textarea id="laudoText" rows="20" placeholder="Laudo gerado aqui..."></textarea>
+    <div class="copy-container">
+      <button id="copyButton" title="Copiar laudo">
+        <i class="fas fa-copy"></i> Copiar Laudo
+      </button>
+      <span id="copyStatus"></span>
+    </div>
+  </div>
+</div>
+
+</div>
+  </div>
+  <script src="mulher.js"></script>
 </body>
 </html>

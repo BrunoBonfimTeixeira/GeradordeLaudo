@@ -5,7 +5,6 @@
   box-sizing: border-box;
 }
 
-/* Corpo da página */
 body {
   font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
   background-color: #f0f4f8;
@@ -15,13 +14,12 @@ body {
   flex-wrap: wrap;
   flex-direction: row;
 }
+
 .wrapper {
   display: flex;
   width: 100%;
-  gap: 10px; /* Espaço entre os blocos, opcional */
+  gap: 10px;
 }
-
-
 
 .main-container {
   width: 65%;
@@ -38,122 +36,60 @@ body {
   box-sizing: border-box;
 }
 
-/* Estilo para o container de cadastro */
 .container-cadastro {
   padding-left: 1%;
-  display: flex; /* Torna os filhos do container flexíveis */
-  flex-direction: row; /* Garante que os elementos fiquem na linha */
-  justify-content: flex-start; /* Faz com que os itens fiquem alinhados à esquerda */
-  max-width: 50% ; /* Ajuste para ocupar mais largura */
+  display: flex;
+  flex-direction: row;
+  justify-content: flex-start;
+  max-width: 50%;
   height: max-content;
-  flex-wrap: wrap; /* Permite que os itens se movam para uma nova linha em telas pequenas */
+  flex-wrap: wrap;
 }
 
-/* Estilo para cada campo dentro do container */
 .container-cadastro .form-row {
-  flex: 1; /* Faz com que os campos ocupem o mesmo tamanho */
-  margin-right: 0; /* Remover o espaçamento direito */
+  flex: 1;
+  margin-right: 0;
 }
 
-/* Para o último campo, remove o margem da direita */
 .container-cadastro .form-row:last-child {
   margin-right: 0;
 }
 
-/* Ajusta a largura dos inputs para que caibam melhor */
 .container-cadastro .form-row input {
-  width: 50%; /* Ocupa toda a largura disponível dentro do form-row */
-  padding: 6px; /* Reduz o padding */
-  margin-bottom: 8px; /* Menor margem inferior */
+  width: 50%;
+  padding: 6px;
+  margin-bottom: 8px;
   border: 1px solid #ccc;
   border-radius: 4px;
 }
 
-/* Ajustes para o label */
 .container-cadastro label {
-  font-size: 0.875rem; /* Fonte menor para o texto */
-  margin-bottom: 5px; /* Menos espaço entre o texto e o campo */
+  font-size: 0.875rem;
+  margin-bottom: 5px;
 }
 
-/* Para o primeiro campo de nome */
 .form-row-name input {
-  width: 20%; /* O input de nome ocupa toda a largura disponível */
+  width: 20%;
 }
 
-/* Ajustes para o padding do formulário para garantir mais compactação */
 .patient-info form {
   display: flex;
   justify-content: flex-start;
-  gap: 1rem; /* Ajuste no espaçamento entre os campos */
-  flex-wrap: wrap; /* Garante que os campos não saiam da linha */
+  gap: 1rem;
+  flex-wrap: wrap;
 }
 
-/* Ajuste de padding nos campos */
 .patient-info form input {
-  padding: 6px; /* Reduz o padding nos campos */
-  font-size: 1rem; /* Ajusta o tamanho da fonte */
+  padding: 6px;
+  font-size: 1rem;
 }
 
-
-
-
-
-
-/* Container da planilha */
-.container-planilha {
-  flex-direction: column;
-  justify-content: flex-start;
-  width: 93%; /* Agora ocupa toda a largura */
-  height: 60%; /* Ocupa toda a altura disponível */
-  background: #fff;
-  border-radius: 0.75rem;
-  box-shadow: 0 0 0.625rem rgba(0, 0, 0, 0.1);
-  box-sizing: border-box;
-  height: max-content;
-
-}
-
-.container-botaoGeradordeTexto{
-  width: 38%; /* Largura fixa */
-  background: #fff;
-  padding: 1rem;
-  border-radius: 8px;
-  box-shadow: 0 0 0.625rem rgba(0, 0, 0, 0.1);
-  display: flex;
-  flex-direction: column;
-  height: max-content;
-}
-
-.diminuir{
-padding-left: 100px;
-padding-right: 100px;
-width: 100%;
-
-}
-
-/* Ajustes para os containers da medicação e volumes */
-.container-VEesquerdo {
-  width: 93%; /* Agora ocupa toda a largura */
-  background: #fff;
-  padding: 1rem;
-  border-radius: 8px;
-  box-shadow: 0 0 0.625rem rgba(0, 0, 0, 0.1);
-  display: flex;
-  flex-direction: column;
-}
-
-.containerVDdireito{
-  width: 93%; /* Agora ocupa toda a largura */
-  background: #fff;
-  padding: 1rem;
-  border-radius: 8px;
-  box-shadow: 0 0 0.625rem rgba(0, 0, 0, 0.1);
-  display: flex;
-  flex-direction: column;
-  height: max-content;
-}
+.container-planilha,
+.container-VEesquerdo,
+.containerVDdireito,
+.containerAE,
 .container-ADdireito {
-  width: 93%; /* Agora ocupa toda a largura */
+  width: 93%;
   background: #fff;
   padding: 1rem;
   border-radius: 8px;
@@ -163,8 +99,8 @@ width: 100%;
   height: max-content;
 }
 
-.containerAE {
-  width: 93%; /* Agora ocupa toda a largura */
+.container-botaoGeradordeTexto {
+  width: 38%;
   background: #fff;
   padding: 1rem;
   border-radius: 8px;
@@ -174,64 +110,36 @@ width: 100%;
   height: max-content;
 }
 
-/* Garantir que os dois containers (VD e AE) fiquem lado a lado */
 .container-direitos {
   display: flex;
   flex-direction: column;
   gap: 1rem;
 }
 
-/* Seção de informações do paciente */
-
-
-/* Ajustando o padding dos campos do formulário */
-.patient-info form {
-  display: flex;
-  justify-content: space-between; /* Espaço igual entre os campos */
-  gap: 1rem; /* Adiciona um pequeno espaço entre os campos */
-  flex-wrap: wrap; /* Garante que os campos não saiam da linha */
-}
-.patient-info form label {
-  margin-bottom: 5px; /* Menor espaçamento entre o label e o campo */
-}
-
-.patient-info form input {
-  width: 100%; /* Ajuste para que ocupe toda a largura disponível */
-  padding: 2px; /* Reduz o padding, caso queira mais compactação */
-  margin-bottom: 10px; /* Ajusta o espaçamento entre os campos */
-}
-
-/* Seção de tabela de volumes cardíacos */
 .summary {
   width: 100%;
-  padding-left: 1.25rem; /* Ajuste para maior espaçamento */
+  padding-left: 1.25rem;
   display: flex;
-  flex-direction: column; /* Adicionado para empilhar os elementos */
-  gap: 1rem; /* Adiciona espaçamento entre os elementos */
+  flex-direction: column;
+  gap: 1rem;
 }
 
-.patient-title{
+.patient-title,
+.planilha-titulo {
   padding-left: 10%;
   font-size: 15px;
 }
 
-.planilha-titulo {
-  font-size: 15px;
-}
-
-/* Títulos */
 h1, h2 {
   color: #034a74;
   text-align: center;
 }
 
-/* Estilo do formulário */
 form label {
   display: block;
   margin: 1rem 0 0.5rem;
   color: #555;
 }
-
 
 form input {
   width: 100%;
@@ -259,7 +167,6 @@ form button:hover {
   background-color: #0288d1;
 }
 
-/* Tabela de volumes cardíacos */
 table {
   width: 100%;
   border-collapse: collapse;
@@ -287,7 +194,6 @@ table td input {
   font-size: 1rem;
 }
 
-/* Rodapé informativo */
 .info-footer {
   margin-top: 1.25rem;
   color: #666;
@@ -295,11 +201,7 @@ table td input {
   text-align: center;
 }
 
-
-
-/* Responsividade para dispositivos menores */
 @media (max-width: 768px) {
-  /* Ajuste no container para telas menores */
   .container {
     flex-direction: column;
     padding: 1rem;
@@ -323,7 +225,6 @@ table td input {
     padding: 0.625rem;
   }
 
-  /* Ajusta a área do laudo para ocupar toda a tela */
   #reportContainer {
     position: static;
     width: 100%;
@@ -332,17 +233,16 @@ table td input {
   }
 }
 
-    #reportContainer {
+#reportContainer {
   margin-top: 20px;
 }
 
-    #reportContainer h2 {
-        margin-bottom: 15px;
-        font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-        color: #333;
-    }
+#reportContainer h2 {
+  margin-bottom: 15px;
+  color: #333;
+}
 
-   #laudoText {
+#laudoText {
   width: 100%;
   height: 450px;
   padding: 15px;
@@ -353,69 +253,58 @@ table td input {
   line-height: 1.5;
 }
 
-    
-        #generateReportBtn {
-        background-color: #28a745;
-        color: white;
-        padding: 10px 18px;
-        border: none;
-        border-radius: 6px;
-        cursor: pointer;
-        font-size: 15px;
-        font-weight: 500;
-        margin-top: 20px;
-        box-shadow: 0 2px 6px rgba(40, 167, 69, 0.4);
-        transition: background-color 0.3s ease, transform 0.2s ease;
-    }
-
-    #generateReportBtn i {
-        margin-right: 6px;
-    }
-
-    #generateReportBtn:hover {
-        background-color: #1e7e34;
-        transform: translateY(-1px);
-         }
-
-         .input-azul {
-    background-color: #d0e7ff;
-    border: 1px solid #aaa;
-    padding: 4px;
-    border-radius: 4px;
+#generateReportBtn {
+  background-color: #28a745;
+  color: white;
+  padding: 10px 18px;
+  border: none;
+  border-radius: 6px;
+  cursor: pointer;
+  font-size: 15px;
+  font-weight: 500;
+  margin-top: 20px;
+  box-shadow: 0 2px 6px rgba(40, 167, 69, 0.4);
+  transition: background-color 0.3s ease, transform 0.2s ease;
 }
+
+#generateReportBtn i {
+  margin-right: 6px;
+}
+
+#generateReportBtn:hover {
+  background-color: #1e7e34;
+  transform: translateY(-1px);
+}
+
+.input-azul {
+  background-color: #d0e7ff;
+  border: 1px solid #aaa;
+  padding: 4px;
+  border-radius: 4px;
+}
+
 input[readonly] {
-    background-color: #f9f9f9;
-    border: 1px solid #ccc;
-    color: #333;
+  background-color: #f9f9f9;
+  border: 1px solid #ccc;
+  color: #333;
 }
 
 .input-manual {
-  background-color: #95c8ff !important; /* azul claro */
+  background-color: #95c8ff !important;
 }
 
 .input-manual-amarelo {
-  background-color: #e3ff67 !important; /* azul claro */
+  background-color: #e3ff67 !important;
 }
 
 .input-manual-MVVM {
-  background-color: #fc2525 !important; /* azul claro */
+  background-color: #fc2525 !important;
 }
 
 .input-auto {
-  background-color: #e9ecef !important; /* cinza claro */
+  background-color: #e9ecef !important;
   pointer-events: none;
   border: 1px solid #ccc;
-}
-
-.containerAEesquerdo {
-  width: 20%;
-  background: #fff;
-  padding: 1rem;
-  border-radius: 8px;
-  box-shadow: 0 0 0.625rem rgba(0, 0, 0, 0.1);
-  display: flex;
-  flex-direction: column;
-  height: max-content;
 }
 
 .volume-resultado {
@@ -435,47 +324,32 @@ input[readonly] {
   color: #888;
 }
 
-.containerADesquerdo {
-  width: 20%;
-  background: #fff;
-  padding: 1rem;
-  border-radius: 8px;
-  box-shadow: 0 0 0.625rem rgba(0, 0, 0, 0.1);
-  display: flex;
-  flex-direction: column;
-  height: max-content;
-}
-
-
-.h1VolAE{
+.h1VolAE {
   color: #034a74;
   text-align: center;
   margin-bottom: 1rem;
   font-size: 1.5rem;
   font-weight: bold;
-
 }
 
 input.input-manual::placeholder {
-  color: #fff;          /* Cor do texto do placeholder */
-  font-style: italic;   /* Texto em itálico */
-  font-size: 0.95rem;   /* Tamanho da fonte (ajustável) */
-  opacity: 1;           /* Para garantir visibilidade total */
+  color: #fff;
+  font-style: italic;
+  font-size: 0.95rem;
+  opacity: 1;
   font-weight: bold;
 }
 
-/* Modal Laudo */
-/* Modal Laudo - posicionado à direita */
 .modal {
   display: none;
   position: fixed;
   z-index: 1000;
   top: 0;
   right: 0;
-  width: 39%;  /* ou ajuste para 400px, por exemplo */
+  width: 39%;
   height: 100%;
   background-color: rgba(247, 245, 245, 0);
-  justify-content: flex-end; /* garante alinhamento à direita */
+  justify-content: flex-end;
   align-items: flex-start;
   padding-top: 1;
 }
@@ -521,9 +395,6 @@ input.input-manual::placeholder {
   font-weight: bold;
 }
 
-
-
-
 #reportContainer textarea {
   width: 100%;
   height: 400px;
@@ -532,8 +403,6 @@ input.input-manual::placeholder {
   resize: vertical;
   box-sizing: border-box;
 }
-
-
 
 .btn-voltar {
   height: 34px;
@@ -558,13 +427,12 @@ input.input-manual::placeholder {
 
 .form-row-group {
   display: flex;
-  gap: 4px; /* bem mais próximo, pode usar 2px se quiser coladinhos */
-  flex-wrap: wrap; /* permite quebrar linha se necessário */
-  align-items: flex-end; /* alinha os campos pela base */
+  gap: 4px;
+  flex-wrap: wrap;
+  align-items: flex-end;
   padding-left: 15px;
   padding-bottom: 2%;
 }
-
 
 .form-row-name {
   flex: 2;
@@ -572,18 +440,10 @@ input.input-manual::placeholder {
   flex-direction: column;
 }
 
-.form-row-idade {
+.form-row-idade,
+.form-row-peso,
+.form-row-altura {
   width: 50px;
-
-}
-
-.form-row-peso{
-width: 50px;
-}
-
-.form-row-altura{
-width: 50px;
-
 }
 
 .form-row {
@@ -591,7 +451,6 @@ width: 50px;
   display: flex;
   flex-direction: column;
   min-width: 80px;
-
 }
 
 .form-row-name input,

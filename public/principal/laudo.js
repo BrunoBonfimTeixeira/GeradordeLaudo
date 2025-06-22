@@ -34,7 +34,7 @@ function saudacaoHorario() {
 // Verifica login e se pagou
 onAuthStateChanged(auth, async (user) => {
   if (!user) {
-    window.location.href = "../login/login.html";
+    window.location.href = "login/login.html";
     return;
   }
 
@@ -56,7 +56,7 @@ onAuthStateChanged(auth, async (user) => {
     const dados = docSnap.data();
 
     if (!dados.pagou) {
-      window.location.href = "../telaPagar/pagar.html";
+      window.location.href = "telaPagar/pagar.html";
       return;
     }
 
@@ -65,22 +65,20 @@ onAuthStateChanged(auth, async (user) => {
     const crm = dados.crm || "";
     const email = dados.email || "";
 
+    const prefixo = dados.genero === 'Feminino' ? 'Dra.' : 'Dr.';
     const saudacao = saudacaoHorario();
-    if (saudacaoEl) saudacaoEl.textContent = `${saudacao}, Dr ${nome}`;
-    if (userName) userName.textContent = `Dr(a). ${nome} ${sobrenome}`;
+    if (saudacaoEl) saudacaoEl.textContent = `${saudacao}, ${prefixo} ${nome}`;
+    if (userName) userName.textContent = `${prefixo} ${nome} ${sobrenome}`;
     if (userEmail) userEmail.textContent = email;
     if (userCrm) userCrm.textContent = `CRM: ${crm}`;
 
-    if (user.photoURL && avatarImg) {
-      avatarImg.src = user.photoURL;
-    } else if (avatarImg) {
-      avatarImg.src = "../imagens/avatar-padrao.jpg";
-    }
+    avatarImg.src = user.photoURL || "imagens/avatar-padrao.jpg";
 
   } catch (error) {
     console.error("Erro ao buscar dados do usuário:", error);
   }
 });
+
 
 // Eventos da interface
 heartBtn?.addEventListener("click", () => {

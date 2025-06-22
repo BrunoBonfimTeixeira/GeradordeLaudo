@@ -1,24 +1,52 @@
-document.getElementById('pagarBtn').addEventListener('click', () => {
-  window.location.href = '../telaPagar/telaDePagamento.html';
-});
+document.addEventListener('DOMContentLoaded', () => {
+  const pagarBtn = document.getElementById('pagarBtn');
+  const logoutBtn = document.getElementById('logoutBtn');
+  let planoSelecionado = null;
 
-document.getElementById('logoutBtn').addEventListener('click', () => {
-  window.location.href = '../login/login.html';
-});
+  // Redireciona para a tela de pagamento
+  if (pagarBtn) {
+    pagarBtn.addEventListener('click', () => {
+      window.location.href = '../telaPagar/telaDePagamento.html';
+    });
+  }
 
-let planoSelecionado = null;
+  // Logout
+  if (logoutBtn) {
+    logoutBtn.addEventListener('click', () => {
+      window.location.href = '../login/login.html';
+    });
+  }
 
-    function selecionarPlano(plano) {
-      planoSelecionado = plano;
-      document.querySelectorAll('.btn-plano').forEach(btn => btn.classList.remove('ativo'));
-      document.querySelector(`.btn-plano[onclick*="${plano}"]`).classList.add('ativo');
+  // Seleciona um plano
+  window.selecionarPlano = function (plano) {
+    planoSelecionado = plano;
+
+    // Remove classe ativa de todos os botões
+    document.querySelectorAll('.btn-plano').forEach(btn => {
+      btn.classList.remove('ativo');
+    });
+
+    // Adiciona a classe ao botão clicado
+    const btnSelecionado = document.querySelector(`.btn-plano[data-plano="${plano}"]`);
+    if (btnSelecionado) {
+      btnSelecionado.classList.add('ativo');
+    }
+  };
+
+  // Simula o pagamento
+  window.fazerPagamento = function () {
+    if (!planoSelecionado) {
+      alert("Selecione um plano antes de continuar.");
+      return;
     }
 
-    function fazerPagamento() {
-      if (!planoSelecionado) {
-        alert("Selecione um plano antes de continuar.");
-        return;
-      }
-      alert("Redirecionando para pagamento do plano " + planoSelecionado.toUpperCase() + "...");
-      // Aqui você pode redirecionar para sua API de pagamento
+    alert(`Redirecionando para pagamento do plano ${planoSelecionado.toUpperCase()}...`);
+
+    // Exemplo de redirecionamento baseado no plano
+    if (planoSelecionado === 'mensal') {
+      window.location.href = 'pagamento-mensal.html';
+    } else if (planoSelecionado === 'anual') {
+      window.location.href = 'pagamento-anual.html';
     }
+  };
+});

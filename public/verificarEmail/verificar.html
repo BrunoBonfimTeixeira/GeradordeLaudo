@@ -1,21 +1,23 @@
 <!DOCTYPE html>
 <html lang="pt-br">
 <head>
-  <meta charset="UTF-8">
+  <meta charset="UTF-8" />
   <title>Verificação de E-mail</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <link rel="stylesheet" href="verificar.css">
 </head>
 <body>
   <div class="container">
     <h2>Verifique seu e-mail 📧</h2>
-    <p>Enviamos um link de verificação para seu e-mail.</p>
-    <p>Confirme para acessar o sistema.</p>
+    <p>Enviamos um link de verificação para seu e-mail cadastrado.</p>
+    <p>Após confirmar, atualize esta página para continuar.</p>
 
-    <button class="btn primary" id="reenviar">Reenviar e-mail</button>
-    <button class="btn secondary" id="logout">Voltar ao login</button>
+    <div class="buttons">
+      <button class="btn primary" id="reenviar">Reenviar e-mail</button>
+      <button class="btn secondary" id="logout">Voltar ao login</button>
+    </div>
   </div>
 
-      <script type="module" src="../verificarEmail/verificar.js"></script>
-
+  <script type="module" src="../verificarEmail/verificar.js"></script>
 </body>
 </html>

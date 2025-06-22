@@ -1,36 +1,37 @@
-// 👉 Substitua pelos dados reais do seu projeto Firebase
+// 👉 Configuração do Firebase
 const firebaseConfig = {
   apiKey: "AIzaSyAkT9CfMw2m5atezryS54Jn6dqc1_GxCak",
   authDomain: "ressonancia-a0e74.firebaseapp.com",
   projectId: "ressonancia-a0e74",
 };
 
+// Inicializa Firebase
 firebase.initializeApp(firebaseConfig);
-
 const db = firebase.firestore();
 const auth = firebase.auth();
 
+// Verifica estado de autenticação
 auth.onAuthStateChanged(async (user) => {
   if (!user) {
-    alert("Você precisa estar logado.");
+    alert("Você precisa estar logado para acessar esta página.");
     return (window.location.href = "../login/login.html");
   }
 
   const uid = user.uid;
   const email = user.email;
-  const hoje = new Date();
-  const mesAtual = hoje.toISOString().slice(0, 7); // Ex: "2025-06"
-
+  const mesAtual = new Date().toISOString().slice(0, 7); // Ex: "2025-06"
   document.getElementById("email").value = email;
 
   try {
     const doc = await db.collection("usuarios").doc(uid).get();
-    if (doc.exists && doc.data().acessoLiberadoMes === mesAtual) {
+    const dados = doc.data();
+
+    if (doc.exists && dados.acessoLiberadoMes === mesAtual) {
       alert("Acesso já está liberado para este mês.");
       return (window.location.href = "../principal/laudo.html");
     }
 
-    // Gerar QR Code PIX
+    // Gera QR Code do PIX
     document.getElementById("statusMsg").textContent = "Gerando QR Code PIX...";
 
     const response = await fetch("https://us-central1-ressonancia-a0e74.cloudfunctions.net/gerarPix", {
@@ -45,42 +46,41 @@ auth.onAuthStateChanged(async (user) => {
       document.getElementById("pixImage").src = "data:image/png;base64," + data.qrCode;
       document.getElementById("qrCodeContainer").style.display = "block";
       document.getElementById("statusMsg").textContent = "Escaneie o QR Code abaixo para concluir o pagamento.";
-
-      // ⏱️ Inicia verificação automática
-      iniciarVerificacao(uid, mesAtual);
+      iniciarVerificacao(uid, mesAtual); // 🔁 Inicia monitoramento
     } else {
-      document.getElementById("statusMsg").textContent = "Erro ao gerar QR Code.";
+      throw new Error("QR Code não retornado.");
     }
 
   } catch (err) {
-    console.error("Erro ao verificar pagamento:", err);
-    document.getElementById("statusMsg").textContent = "Erro ao verificar pagamento.";
+    console.error("Erro ao gerar ou verificar o pagamento:", err);
+    document.getElementById("statusMsg").textContent = "Erro ao gerar o QR Code. Tente novamente mais tarde.";
   }
 });
 
-// 🔁 Verifica a cada 30s se o pagamento foi aprovado
+// 🔁 Verificação contínua do pagamento
 function iniciarVerificacao(uid, mesAtual) {
   let tentativas = 0;
-  const maxTentativas = 20; // ~10 minutos
-
+  const maxTentativas = 20; // 10 minutos
   const intervalo = setInterval(async () => {
     tentativas++;
 
     try {
-      const doc = await firebase.firestore().collection("usuarios").doc(uid).get();
+      const doc = await db.collection("usuarios").doc(uid).get();
       const dados = doc.data();
 
-      if (dados && dados.acessoLiberadoMes === mesAtual) {
+      if (dados?.acessoLiberadoMes === mesAtual) {
         clearInterval(intervalo);
-        document.getElementById("statusMsg").textContent = "Pagamento confirmado! Redirecionando...";
-        setTimeout(() => window.location.href = "../principal/laudo.html", 1500);
+        document.getElementById("statusMsg").textContent = "✅ Pagamento confirmado! Redirecionando...";
+        setTimeout(() => {
+          window.location.href = "../principal/laudo.html";
+        }, 1500);
       } else if (tentativas >= maxTentativas) {
         clearInterval(intervalo);
-        document.getElementById("statusMsg").textContent = "Tempo limite atingido. Recarregue a página para tentar novamente.";
+        document.getElementById("statusMsg").textContent =
+          "⏱️ Tempo limite atingido. Recarregue a página para tentar novamente.";
       }
-
     } catch (err) {
       console.error("Erro ao verificar status do pagamento:", err);
     }
-  }, 30000); // 30 segundos
+  }, 30000); // a cada 30s
 }

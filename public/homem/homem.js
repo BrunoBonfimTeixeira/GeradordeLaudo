@@ -4,26 +4,26 @@ document.addEventListener('DOMContentLoaded', function () {
   const volumeInputs = document.querySelectorAll('.volume-input');
   const linhasTabela = document.querySelectorAll('#cardiacVolumeTable tbody tr');
   const generateReportBtn = document.getElementById("generateReportBtn");
-const laudoModal = document.getElementById("laudoModal");
-const closeModalBtn = document.getElementById("closeModalBtn");
+  const laudoModal = document.getElementById("laudoModal");
+  const closeModalBtn = document.getElementById("closeModalBtn");
+  const laudoText = document.getElementById("laudoText");
 
-generateReportBtn.addEventListener("click", function () {
-  gerarTextoDoLaudo();
-  laudoModal.style.display = "block";
-});
+  generateReportBtn.addEventListener("click", function () {
+    gerarTextoDoLaudo();
+    laudoModal.style.display = "block";
+  });
 
-closeModalBtn.addEventListener("click", function () {
-  laudoModal.style.display = "none";
-});
-
-window.addEventListener("click", function (event) {
-  if (event.target === laudoModal) {
+  closeModalBtn.addEventListener("click", function () {
     laudoModal.style.display = "none";
-  }
-});
+  });
 
+  window.addEventListener("click", function (event) {
+    if (event.target === laudoModal) {
+      laudoModal.style.display = "none";
+    }
+  });
 
-function toggleBloco(botaoId, conteudoId, iconeId) {
+  function toggleBloco(botaoId, conteudoId, iconeId) {
     const botao = document.getElementById(botaoId);
     const conteudo = document.getElementById(conteudoId);
     const icone = document.getElementById(iconeId);
@@ -45,8 +45,6 @@ function toggleBloco(botaoId, conteudoId, iconeId) {
   toggleBloco("btnExpandirAE", "conteudoAE", "iconeSetaAE");
   toggleBloco("btnExpandirAD", "conteudoAD", "iconeSetaAD");
 
-
-  // Eventos para pular inputs com Enter
   volumeInputs.forEach((input, index) => {
     input.addEventListener('keydown', function (event) {
       if (event.key === 'Enter') {
@@ -185,8 +183,6 @@ function toggleBloco(botaoId, conteudoId, iconeId) {
     }
   }
 
-
-  
   function atualizarPercentualRT() {
     const massa = parseFloat(document.getElementById("ve-massa").value);
     const massaRT = parseFloat(document.getElementById("ve-massa-rt").value);
@@ -236,7 +232,7 @@ function toggleBloco(botaoId, conteudoId, iconeId) {
     document.getElementById(id).addEventListener("input", atualizarPercentualRT);
   });
 
-function gerarTextoDoLaudo() {
+  function gerarTextoDoLaudo() {
     const v = id => document.getElementById(id)?.value || "---";
 
     laudoText.value = `RESSONÂNCIA MAGNÉTICA DE CORAÇÃO\n\nMétodo  \nRealizadas sequências de cinerressonância e morfológicas antes da administração endovenosa do meio de contraste paramagnético. Após a sua administração, foram realizadas sequências de perfusão miocárdica, volumétrica do tórax e de realce tardio. Exame realizado em repouso.\n\nAnálise  \nHOMEM ROTINA\n\nÁtrios com dimensões normais.  \nÁtrio esquerdo com diâmetro anteroposterior de ${v("ae-diametro")} cm (VN 2,3–4,3 cm) e volume estimado em ${v("ae-volume-index")} ml/m² (VN 26–52 ml/m²).  \nÁtrio direito com volume estimado em ${v("volumeIndexAD")} ml/m² (VN até 39 ml/m²) e área indexada de ${v("areaIndex4CH_AD")} cm²/m².\n\nVentrículo direito com dimensões e função contrátil global preservadas, sem alterações na contratilidade segmentar.  \nVolume diastólico final de ${v("vd-vdf-index")} ml/m² (VN 61–121 ml/m²), volume sistólico final de ${v("vd-vsf-index")} ml/m² (VN 19–59 ml/m²) e fração de ejeção estimada em ${v("vd-fe")} % (VN > 40%).  \nMiocárdio ventricular direito com espessura e sinal preservados.\n\nVentrículo esquerdo com dimensões e função contrátil global preservadas, sem alterações na contratilidade segmentar.  \nDiâmetro diastólico final de ${v("ve-ddf")} cm (VN ≤ 5,8 cm), volume diastólico final de ${v("ve-vdf-index")} ml/m² (VN 57–105 ml/m²), volume sistólico final de ${v("ve-vsf-index")} ml/m² (VN 14–38 ml/m²) e fração de ejeção estimada em ${v("ve-fe")} % (VN > 50%).  \nVolume ejetado estimado em ${v("ve-vol-ejetado")} mL.  \nMiocárdio ventricular esquerdo com espessura e sinal preservados.  \nEspessura de até ${v("ve-esp-septal")} cm na parede septal basal (VN ≤ 1,2 cm).  \nMassa estimada em ${v("ve-massa")} g (VN 92–176 g) e em ${v("ve-massa-index")} g/m² (VN 49–85 g/m²).\n\nPerfusão miocárdica normal, em repouso.  \nNão se identifica realce tardio miocárdico.  \nValvas cardíacas sem alterações evidentes ao método.  \nNão se observa espessamento ou derrame pericárdico.  \nAorta torácica e tronco pulmonar com calibre normal.\n\nComentários  \nRessonância magnética cardíaca sem anormalidade perceptível.  \nNão se identifica realce tardio miocárdico.\n\n*Valores de referência: Kawel-Boehm et al. Journal of Cardiovascular Magnetic Resonance (2015)`;

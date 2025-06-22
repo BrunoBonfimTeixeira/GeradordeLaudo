@@ -1,38 +1,50 @@
 <!DOCTYPE html>
 <html lang="pt-BR">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   
-  <meta http-equiv="Content-Security-Policy" content="default-src 'self'; font-src 'self' https://fonts.gstatic.com https://cdnjs.cloudflare.com; style-src 'self' https://fonts.googleapis.com https://cdnjs.cloudflare.com;">
-
+  <meta http-equiv="Content-Security-Policy"
+    content="default-src 'self';
+             script-src 'self' 'unsafe-inline' https://www.gstatic.com https://www.googleapis.com;
+             style-src 'self' 'unsafe-inline' https://fonts.googleapis.com https://cdnjs.cloudflare.com;
+             font-src 'self' https://fonts.gstatic.com https://cdnjs.cloudflare.com;
+             connect-src 'self' https://firestore.googleapis.com https://identitytoolkit.googleapis.com https://securetoken.googleapis.com;">
+  
   <title>Pagamento Premium</title>
-  <link rel="stylesheet" href="pagar.css">
+  <link rel="stylesheet" href="pagar.css" />
 
-  <!-- Font Awesome -->
+  <!-- Ícones do Font Awesome -->
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" crossorigin="anonymous" referrerpolicy="no-referrer" />
 </head>
 <body>
   <div class="pagamento-container">
-    <!-- Botão Fechar -->
-    <a href="../login/login.html" class="fechar-btn" title="Voltar">
+
+    <!-- Botão de Voltar -->
+    <a href="../login/login.html" class="fechar-btn" title="Voltar para o login">
       <i class="fas fa-times"></i>
     </a>
 
-    <!-- Conteúdo -->
+    <!-- Caixa de pagamento -->
     <div class="caixa-pagamento">
       <h2><i class="fas fa-lock"></i> Acesso Premium</h2>
-      <p class="descricao">Para continuar, você precisa ativar sua licença.</p>
+      <p class="descricao">Para continuar, ative sua licença e libere o sistema completo.</p>
 
+      <!-- Lista de Benefícios -->
       <ul class="beneficios">
-        <li><i class="fas fa-check-circle"></i> Acesso total ao sistema</li>
+        <li><i class="fas fa-check-circle"></i> Acesso completo ao sistema</li>
         <li><i class="fas fa-check-circle"></i> Atualizações automáticas</li>
-        <li><i class="fas fa-check-circle"></i> Suporte prioritário</li>
+        <li><i class="fas fa-check-circle"></i> Suporte técnico prioritário</li>
       </ul>
 
+      <!-- Planos de pagamento -->
       <div class="opcoes-pagamento">
-        <a href="pagamento-mensal.html" class="btn-plano">Assinar Mensal R$220/mês</a>
-        <a href="pagamento-anual.html" class="btn-plano">Assinar Anual R$2400/ano</a>
+        <a href="pagamento-mensal.html" class="btn-plano">
+          Assinar Mensal — <strong>R$220/mês</strong>
+        </a>
+        <a href="pagamento-anual.html" class="btn-plano">
+          Assinar Anual — <strong>R$2400/ano</strong>
+        </a>
       </div>
     </div>
   </div>

@@ -4,13 +4,20 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
   <title>Login - Gerador de Laudos RM</title>
+  <meta http-equiv="Content-Security-Policy"
+      content="default-src 'self';
+               script-src 'self' https://www.gstatic.com https://www.googleapis.com 'unsafe-inline';
+               connect-src 'self' https://firestore.googleapis.com https://identitytoolkit.googleapis.com https://securetoken.googleapis.com;
+               style-src 'self' 'unsafe-inline' https://fonts.googleapis.com;
+               font-src 'self' https://fonts.gstatic.com;">
+
   <link rel="stylesheet" href="style.css">
 </head>
 <body>
   
   <div class="login-page">
     <div class="login-image">
-      <img src="imagem/imagemLogin.jpg" alt="Imagem médica">
+      <img src="../imagem/imagemLogin.jpg" alt="Imagem médica">
     </div>
     <div class="login-box">
       <form class="login-form">
@@ -31,7 +38,6 @@
 
         <div class="extras">
           <a href="esqueci.html">Esqueceu a senha?</a>
-
           <span>|</span>
           <a href="register/register.html">Criar conta</a>
         </div>
@@ -39,6 +45,6 @@
     </div>
   </div>
 
-  <script type="module" src="login.js"></script>
+  <script type="module" src="login/login.js"></script>
 </body>
 </html>

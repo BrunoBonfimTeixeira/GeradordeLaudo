@@ -8,7 +8,7 @@ import {
   doc, setDoc, query, collection, where, getDocs
 } from "https://www.gstatic.com/firebasejs/10.11.0/firebase-firestore.js";
 
-// Confirma se o JS está carregando
+// ✅ Confirmação de carregamento
 console.log("✅ register.js carregado");
 
 // Preenche os dias dinamicamente
@@ -20,8 +20,8 @@ for (let i = 1; i <= 31; i++) {
   diaSelect.appendChild(opt);
 }
 
-// Validação de senha
-window.validarSenha = function(input) {
+// ✅ Validação de senha em tempo real
+window.validarSenha = function (input) {
   const msg = document.getElementById("senhaMsg");
   if (input.value.length < 6) {
     msg.textContent = "Senha muito curta.";
@@ -30,10 +30,11 @@ window.validarSenha = function(input) {
   }
 };
 
-// Envio do formulário
+// ✅ Envio do formulário
 document.querySelector('.form-card').addEventListener('submit', async (e) => {
   e.preventDefault();
 
+  // 🔹 Coleta de campos
   const nome = document.getElementById('nome').value.trim();
   const sobrenome = document.getElementById('sobrenome').value.trim();
   const crm = document.getElementById('crm').value.trim().toUpperCase();
@@ -45,35 +46,43 @@ document.querySelector('.form-card').addEventListener('submit', async (e) => {
   const telefone = document.getElementById('telefone').value.trim();
   const senha = document.getElementById('senha').value;
 
-  // Validação do CRM
-  const regexCRM = /^\d{4,6}-[A-Z]{2}$/;
-  if (!regexCRM.test(crm)) {
-    alert("Informe um CRM válido no formato 123456-SP.");
-    return;
-  }
-
-  if (!email.includes('@') || senha.length < 6) {
-    alert("Informe um e-mail válido e uma senha com pelo menos 6 caracteres.");
-    return;
-  }
-
   const nascimento = `${ano}-${mes.padStart(2, '0')}-${dia.padStart(2, '0')}`;
 
+  // 🔸 Validações
+  const regexCRM = /^\d{4,6}-[A-Z]{2}$/;
+  if (!regexCRM.test(crm)) {
+    alert("❌ Informe um CRM válido no formato 123456-SP.");
+    return;
+  }
+
+  if (!email.includes('@')) {
+    alert("❌ E-mail inválido.");
+    return;
+  }
+
+  if (senha.length < 6) {
+    alert("❌ A senha deve ter pelo menos 6 caracteres.");
+    return;
+  }
+
   try {
-    // Verifica CRM duplicado
+    // 🔸 Verifica se o CRM já existe
     const crmQuery = query(collection(db, "usuarios"), where("crm", "==", crm));
     const crmSnapshot = await getDocs(crmQuery);
+
     if (!crmSnapshot.empty) {
-      alert("Este CRM já está cadastrado. Faça login ou use outro CRM.");
+      alert("❌ Este CRM já está cadastrado. Faça login ou use outro CRM.");
       return;
     }
 
-    // Cria usuário
+    // 🔸 Cria o usuário no Auth
     const userCredential = await createUserWithEmailAndPassword(auth, email, senha);
     const user = userCredential.user;
 
+    // 🔸 Envia e-mail de verificação
     await sendEmailVerification(user);
 
+    // 🔸 Salva no Firestore
     await setDoc(doc(db, "usuarios", user.uid), {
       uid: user.uid,
       nome,
@@ -83,11 +92,12 @@ document.querySelector('.form-card').addEventListener('submit', async (e) => {
       genero,
       telefone,
       email,
-      criadoEm: new Date()
+      criadoEm: new Date(),
+      pagou: false // pode ser usado no controle de pagamento
     });
 
-    window.location.href = "../login/login.html"; // Redireciona para o login
-
+    alert("✅ Cadastro realizado com sucesso!\nVerifique seu e-mail para ativar sua conta.");
+    window.location.href = "../verificarEmail/verificar.html";
 
   } catch (error) {
     console.error(error);
