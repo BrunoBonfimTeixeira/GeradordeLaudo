@@ -49,7 +49,8 @@ document.querySelector('.login-form').addEventListener('submit', async (e) => {
     // Verifica se o e-mail está confirmado
     if (!user.emailVerified) {
       alert("⚠️ Verifique seu e-mail antes de acessar o sistema.");
-      window.location.href = "../verificarEmail/verificar.html";
+      window.location.href = "https://brunobonfimteixeira.github.io/GeradordeLaudo/verificarEmail/verificar.html";
+
       return;
     }
 
@@ -58,13 +59,14 @@ document.querySelector('.login-form').addEventListener('submit', async (e) => {
     const docSnap = await getDoc(docRef);
 
     if (!docSnap.exists() || docSnap.data().pagou !== true) {
-      window.location.href = "../telaPagar/pagar.html"; // redireciona se não pagou
+    window.location.href = "https://brunobonfimteixeira.github.io/GeradordeLaudo/telaPagar/pagar.html";
       return;
     }
 
     // Se passou em tudo:
     alert("✅ Login realizado com sucesso!");
-    window.location.href = "principal/laudo.html";
+    window.location.href = "https://brunobonfimteixeira.github.io/GeradordeLaudo/principal/laudo.html";
+
 
   } catch (error) {
     console.error(error);
