@@ -34,7 +34,7 @@ function saudacaoHorario() {
 // Verifica login e se pagou
 onAuthStateChanged(auth, async (user) => {
   if (!user) {
-    window.location.href = "../index.html";
+    window.location.href = "../login/login.html";
     return;
   }
 
@@ -113,7 +113,7 @@ mulherBtn?.addEventListener("click", () => {
 
 logoutBtn?.addEventListener("click", async () => {
   await signOut(auth);
-  window.location.href = "../index.html";
+  window.location.href = "../login/index.html";
 });
 
 // Gráfico com Chart.js (opcional)

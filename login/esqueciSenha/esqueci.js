@@ -1,4 +1,4 @@
-    import { auth } from './firebase/firebaseConfig.js';
+    import { auth } from '../../public/firebase/firebaseConfig.js';
     import { sendPasswordResetEmail } from "https://www.gstatic.com/firebasejs/10.11.0/firebase-auth.js";
 
     document.getElementById('recuperar').addEventListener('click', async () => {

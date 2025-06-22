@@ -3,7 +3,7 @@ document.getElementById('pagarBtn').addEventListener('click', () => {
 });
 
 document.getElementById('logoutBtn').addEventListener('click', () => {
-  window.location.href = '../index.html';
+  window.location.href = '../login/login.html';
 });
 
 let planoSelecionado = null;

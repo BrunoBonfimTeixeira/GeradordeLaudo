@@ -29,7 +29,7 @@ btnReenviar?.addEventListener('click', async () => {
 btnLogout?.addEventListener('click', async () => {
   try {
     await signOut(auth);
-    window.location.href = "../index.html";
+    window.location.href = "../login/login.html";
   } catch (error) {
     console.error("Erro ao fazer logout:", error);
     alert("❌ Erro ao sair. Tente novamente.");

@@ -86,7 +86,7 @@ document.querySelector('.form-card').addEventListener('submit', async (e) => {
       criadoEm: new Date()
     });
 
-    window.location.href = "../index.html"; // Redireciona para o login
+    window.location.href = "../login/login.html"; // Redireciona para o login
 
 
   } catch (error) {
