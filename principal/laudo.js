@@ -22,6 +22,7 @@ const reference1 = document.getElementById("reference1");
 const homemBtn = document.getElementById("homemBtn");
 const mulherBtn = document.getElementById("mulherBtn");
 const logoutBtn = document.getElementById("logoutBtn");
+const avatarImg = document.getElementById("avatarImg");
 
 function saudacaoHorario() {
   const hora = new Date().getHours();
@@ -30,11 +31,7 @@ function saudacaoHorario() {
   return "Boa noite";
 }
 
-// Verifica se o usuário está logado
-onAuthStateChanged(auth, async (user) => {
-
-const avatarImg = document.getElementById("avatarImg");
-
+// Verifica login e se pagou
 onAuthStateChanged(auth, async (user) => {
   if (!user) {
     window.location.href = "../index.html";
@@ -51,64 +48,35 @@ onAuthStateChanged(auth, async (user) => {
     const docRef = doc(db, "usuarios", user.uid);
     const docSnap = await getDoc(docRef);
 
-    if (docSnap.exists()) {
-      const dados = docSnap.data();
-      const nome = dados.nome || "";
-      const sobrenome = dados.sobrenome || "";
-      const crm = dados.crm || "";
-      const email = dados.email || "";
-
-      const saudacao = saudacaoHorario();
-      if (saudacaoEl) saudacaoEl.textContent = `${saudacao}, Dr ${nome}`;
-      if (userName) userName.textContent = `Dr(a). ${nome} ${sobrenome}`;
-      if (userEmail) userEmail.textContent = email;
-      if (userCrm) userCrm.textContent = `CRM: ${crm}`;
-
-      // 🔥 Aqui define a foto do Firebase Auth
-      if (user.photoURL && avatarImg) {
-        avatarImg.src = user.photoURL;
-      } else if (avatarImg) {
-        avatarImg.src = "../imagens/avatar-padrao.jpg"; // foto padrão se não houver
-      }
-    } else {
+    if (!docSnap.exists()) {
       console.warn("Usuário não encontrado no Firestore.");
+      return;
     }
-  } catch (error) {
-    console.error("Erro ao buscar dados do usuário:", error);
-  }
-});
 
+    const dados = docSnap.data();
 
-  if (!user) {
-    window.location.href = "../index.html";
-    return;
-  }
-
-  if (!user.emailVerified) {
-    alert("⚠️ Verifique seu e-mail antes de usar o sistema.");
-    await signOut(auth);
-    return;
-  }
-
-  try {
-    const docRef = doc(db, "usuarios", user.uid);
-    const docSnap = await getDoc(docRef);
-
-    if (docSnap.exists()) {
-      const dados = docSnap.data();
-      const nome = dados.nome || "";
-      const sobrenome = dados.sobrenome || "";
-      const crm = dados.crm || "";
-      const email = dados.email || "";
-
-      const saudacao = saudacaoHorario();
-      if (saudacaoEl) saudacaoEl.textContent = `${saudacao}, Dr ${nome}`;
-      if (userName) userName.textContent = `Dr(a). ${nome} ${sobrenome}`;
-      if (userEmail) userEmail.textContent = email;
-      if (userCrm) userCrm.textContent = `CRM: ${crm}`;
-    } else {
-      console.warn("Usuário não encontrado no Firestore.");
+    if (!dados.pagou) {
+      window.location.href = "../telaPagar/pagar.html";
+      return;
     }
+
+    const nome = dados.nome || "";
+    const sobrenome = dados.sobrenome || "";
+    const crm = dados.crm || "";
+    const email = dados.email || "";
+
+    const saudacao = saudacaoHorario();
+    if (saudacaoEl) saudacaoEl.textContent = `${saudacao}, Dr ${nome}`;
+    if (userName) userName.textContent = `Dr(a). ${nome} ${sobrenome}`;
+    if (userEmail) userEmail.textContent = email;
+    if (userCrm) userCrm.textContent = `CRM: ${crm}`;
+
+    if (user.photoURL && avatarImg) {
+      avatarImg.src = user.photoURL;
+    } else if (avatarImg) {
+      avatarImg.src = "../imagens/avatar-padrao.jpg";
+    }
+
   } catch (error) {
     console.error("Erro ao buscar dados do usuário:", error);
   }
