@@ -1,0 +1,160 @@
+/* Reset básico */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+/* Corpo da página */
+body {
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  background-color: #f0f4f8;
+  margin: 0;
+  padding: 20px;
+}
+
+/* Container principal */
+.container {
+  max-width: 1200px;
+  margin: auto;
+  background: #fff;
+  padding: 30px;
+  border-radius: 12px;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+}
+
+/* Títulos */
+h1, h2 {
+  color: #034a74;
+  text-align: center;
+}
+
+/* Estilo do formulário */
+form label {
+  display: block;
+  margin: 10px 0 5px;
+  color: #555;
+}
+
+form input {
+  width: 100%;
+  padding: 8px;
+  border-radius: 6px;
+  border: 1px solid #ccc;
+  margin-bottom: 15px;
+  font-size: 16px;
+}
+
+form button {
+  background-color: #034a74;
+  color: #fff;
+  border: none;
+  padding: 10px 20px;
+  border-radius: 8px;
+  cursor: pointer;
+  display: block;
+  margin-top: 15px;
+  width: 100%;
+  font-size: 16px;
+}
+
+form button:hover {
+  background-color: #0288d1;
+}
+
+/* Tabela de volumes cardíacos */
+table {
+  width: 100%;
+  border-collapse: collapse;
+  margin-top: 20px;
+}
+
+table thead {
+  background-color: #034a74;
+  color: white;
+}
+
+table th, table td {
+  padding: 10px;
+  border: 1px solid #ccc;
+  text-align: center;
+  font-size: 16px;
+}
+
+table td input {
+  width: 90%;
+  padding: 6px;
+  text-align: center;
+  border-radius: 4px;
+  border: 1px solid #ccc;
+  font-size: 16px;
+}
+
+/* Rodapé informativo */
+.info-footer {
+  margin-top: 20px;
+  color: #666;
+  font-size: 14px;
+  text-align: center;
+}
+
+/* Estilo do botão Gerar Laudo */
+#generateReportBtn {
+  margin-top: 20px;
+  background-color: #28a745;
+  color: white;
+  border: none;
+  padding: 10px 20px;
+  border-radius: 8px;
+  cursor: pointer;
+  font-size: 16px;
+  width: 100%;
+}
+
+#generateReportBtn:hover {
+  background-color: #218838;
+}
+
+/* Responsividade para dispositivos menores */
+@media (max-width: 768px) {
+  .container {
+    padding: 15px;
+  }
+
+  h1, h2 {
+    font-size: 1.5em;
+  }
+
+  form button, #generateReportBtn {
+    width: 100%;
+  }
+
+  table th, table td {
+    font-size: 14px;
+    padding: 8px;
+  }
+}
+
+/* Estilo do botão "Voltar" */
+.back-button {
+  background-color: #034a74;
+  color: #fff;
+  padding: 12px 20px;
+  border: none;
+  border-radius: 8px;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  font-size: 16px;
+  text-transform: uppercase;
+  transition: background-color 0.3s ease;
+  margin-top: 20px;
+}
+
+.back-button i {
+  margin-right: 10px; /* Espaço entre o ícone e o texto */
+}
+
+.back-button:hover {
+  background-color: #0288d1;
+}

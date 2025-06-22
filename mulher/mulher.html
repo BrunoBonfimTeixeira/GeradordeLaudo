@@ -1,0 +1,139 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Planilha Cardíaca</title>
+    <link rel="stylesheet" href="mulher.css" />
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css" rel="stylesheet">
+
+</head>
+<body>
+      <!-- Botão Voltar -->
+    </div>
+    <div class="container">
+<button onclick="window.location.href='../principal/laudo.html';" class="back-button">
+  <i class="fas fa-arrow-left"></i> Voltar
+</button>
+
+        <h1>Cadastro de Paciente</h1>
+
+        <div class="patient-info">
+            <h2>Informações do Paciente (MULHER)</h2>
+            <form id="patientForm">
+                <label for="name">Nome:</label>
+                <input type="text" id="name" name="name" required>
+
+                <label for="age">Idade:</label>
+                <input type="number" id="age" name="age" required>
+
+                <label for="weight">Peso (kg):</label>
+                <input type="number" id="weight" name="weight" required>
+
+                <label for="height">Altura (cm):</label>
+                <input type="number" id="height" name="height" required>
+            </form>
+        </div>
+
+        <div class="summary">
+            <h2>Planilha de Volumes Cardíacos</h2>
+            <table id="cardiacVolumeTable">
+                <thead>
+                    <tr>
+                        <th>Volumes</th>
+                        <th>1</th>
+                        <th>2</th>
+                        <th>3</th>
+                        <th>4</th>
+                        <th>5</th>
+                        <th>6</th>
+                        <th>7</th>
+                        <th>8</th>
+                        <th>9</th>
+                        <th>10</th>
+                        <th>11</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <th>VE VDF Endo</th>
+                        <td><input type="number" class="volume-input" data-row="1"></td>
+                        <td><input type="number" class="volume-input" data-row="2"></td>
+                        <td><input type="number" class="volume-input" data-row="3"></td>
+                        <td><input type="number" class="volume-input" data-row="4"></td>
+                        <td><input type="number" class="volume-input" data-row="5"></td>
+                        <td><input type="number" class="volume-input" data-row="6"></td>
+                        <td><input type="number" class="volume-input" data-row="7"></td>
+                        <td><input type="number" class="volume-input" data-row="8"></td>
+                        <td><input type="number" class="volume-input" data-row="9"></td>
+                        <td><input type="number" class="volume-input" data-row="10"></td>
+                        <td><input type="number" class="volume-input" data-row="11"></td>
+                    </tr>
+                    <tr>
+                        <th>VE VDF Epi</th>
+                        <td><input type="number" class="volume-input" data-row="1"></td>
+                        <td><input type="number" class="volume-input" data-row="2"></td>
+                        <td><input type="number" class="volume-input" data-row="3"></td>
+                        <td><input type="number" class="volume-input" data-row="4"></td>
+                        <td><input type="number" class="volume-input" data-row="5"></td>
+                        <td><input type="number" class="volume-input" data-row="6"></td>
+                        <td><input type="number" class="volume-input" data-row="7"></td>
+                        <td><input type="number" class="volume-input" data-row="8"></td>
+                        <td><input type="number" class="volume-input" data-row="9"></td>
+                        <td><input type="number" class="volume-input" data-row="10"></td>
+                        <td><input type="number" class="volume-input" data-row="11"></td>
+                    </tr>
+                    <tr>
+                        <th>VD VDF Endo</th>
+                        <td><input type="number" class="volume-input" data-row="1"></td>
+                        <td><input type="number" class="volume-input" data-row="2"></td>
+                        <td><input type="number" class="volume-input" data-row="3"></td>
+                        <td><input type="number" class="volume-input" data-row="4"></td>
+                        <td><input type="number" class="volume-input" data-row="5"></td>
+                        <td><input type="number" class="volume-input" data-row="6"></td>
+                        <td><input type="number" class="volume-input" data-row="7"></td>
+                        <td><input type="number" class="volume-input" data-row="8"></td>
+                        <td><input type="number" class="volume-input" data-row="9"></td>
+                        <td><input type="number" class="volume-input" data-row="10"></td>
+                        <td><input type="number" class="volume-input" data-row="11"></td>
+                    </tr>
+                    <tr>
+                        <th>VE VSF Endo</th>
+                        <td><input type="number" class="volume-input" data-row="1"></td>
+                        <td><input type="number" class="volume-input" data-row="2"></td>
+                        <td><input type="number" class="volume-input" data-row="3"></td>
+                        <td><input type="number" class="volume-input" data-row="4"></td>
+                        <td><input type="number" class="volume-input" data-row="5"></td>
+                        <td><input type="number" class="volume-input" data-row="6"></td>
+                        <td><input type="number" class="volume-input" data-row="7"></td>
+                        <td><input type="number" class="volume-input" data-row="8"></td>
+                        <td><input type="number" class="volume-input" data-row="9"></td>
+                        <td><input type="number" class="volume-input" data-row="10"></td>
+                        <td><input type="number" class="volume-input" data-row="11"></td>
+                    </tr>
+                    <tr>
+                        <th>VD VSF Endo</th>
+                        <td><input type="number" class="volume-input" data-row="1"></td>
+                        <td><input type="number" class="volume-input" data-row="2"></td>
+                        <td><input type="number" class="volume-input" data-row="3"></td>
+                        <td><input type="number" class="volume-input" data-row="4"></td>
+                        <td><input type="number" class="volume-input" data-row="5"></td>
+                        <td><input type="number" class="volume-input" data-row="6"></td>
+                        <td><input type="number" class="volume-input" data-row="7"></td>
+                        <td><input type="number" class="volume-input" data-row="8"></td>
+                        <td><input type="number" class="volume-input" data-row="9"></td>
+                        <td><input type="number" class="volume-input" data-row="10"></td>
+                        <td><input type="number" class="volume-input" data-row="11"></td>
+                    </tr>
+                </tbody>
+            </table>
+            <p class="info-footer">Preencher os volumes na coluna da esquerda ou colocar a área de cada corte no EC na planilha acima para VE e VD</p>
+        </div>
+
+        <!-- Botão Gerar Laudo -->
+        <button id="generateReportBtn">Gerar Laudo</button>
+    </div>
+
+    <script src="mulher.js"></script>
+</body>
+</html>

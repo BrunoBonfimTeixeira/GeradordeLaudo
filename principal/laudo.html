@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Exemplo de Tela Lateral</title>
+    <link rel="stylesheet" href="laudo.css">
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script> <!-- Incluindo o Chart.js -->
+    <script type="module" src="../firebase/firebaseConfig.js"></script> <!-- Incluindo o Firebase -->
+    
+</head>
+<body>
+    <div class="container">
+        <div class="trigger-area" id="triggerArea"></div>
+
+        <!-- Painel Lateral -->
+        <div class="side-panel" id="sidePanel">
+            <div class="menu-icon" id="menuIcon">
+                <div class="bar"></div>
+                <div class="bar"></div>
+                <div class="bar"></div>
+            </div>
+            <div id="userInfo">
+                <div id="userAvatar">👨‍⚕️</div>
+                <h2 id="saudacao">Olá, Dr!</h2>
+
+<p id="userCrm"></p>
+<button id="logoutBtn" class="logout-btn">Sair</button> 
+
+
+            </div>
+
+            <!-- Barra de separação e cálculo -->
+            <hr class="separator">
+            <p class="calculate-function">CALCULE A FUNÇÃO</p>
+            
+            <!-- Botão "COMPARAR A UM VALOR DE REFERÊNCIA" -->
+            <button id="compareBtn" class="compare-btn">COMPARAR A UM VALOR DE REFERÊNCIA</button>
+            
+            <!-- Botão de Referência 1 (inicialmente escondido) -->
+            <button id="reference1" class="reference-btn" style="display:none;">Referência 1</button>
+            
+            <!-- Botão "RM CORAÇÃO" para abrir os botões de rotina -->
+            <button id="heartBtn" class="heart-btn">RM CORAÇÃO</button>
+
+            <!-- Botões de rotina (inicialmente escondidos) -->
+            <div id="routineButtons" class="routine-buttons" style="display: none;">
+                <button class="routine-btn" id="homemBtn">-HOMEM ROTINA</button>
+                <button class="routine-btn" id="mulherBtn">-MULHER ROTINA</button> <!-- Botão Mulher Rotina -->
+            </div>
+        </div>
+
+        <!-- Conteúdo Principal -->
+        <div class="main-content">
+            <h1>Conteúdo Principal</h1>
+
+            <!-- Retângulo para nome e data do paciente -->
+            <div class="patient-info">
+                <div class="info-box">
+                    <h2 id="patientName">Nome do Paciente: João Silva</h2>
+                    <p id="patientDate">Data: 15/06/2025</p>
+                </div>
+
+                <!-- Retângulo para gráfico -->
+                <div class="chart-box">
+                    <canvas id="myChart"></canvas>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script type="module" src="../principal/laudo.js"></script>
+    
+</body>
+</html>

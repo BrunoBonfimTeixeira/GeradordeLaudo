@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Pagamento Mensal</title>
+  <link rel="stylesheet" href="pagamento-mensal.css">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css"/>
+</head>
+<body>
+  <div class="pagamento-wrapper">
+    <a href="../index.html" class="fechar"><i class="fas fa-times"></i></a>
+    <div class="formulario-pagamento">
+      <h2>Plano</h2>
+      <p class="subtitulo">Assinatura: <strong>R$ 2400,00/anual</strong></p>
+
+      <form>
+        <label for="email">E-mail</label>
+        <input type="email" id="email" placeholder="seuemail@exemplo.com" required />
+
+        <label for="card">Dados do cartão</label>
+        <input type="text" id="card" placeholder="1234 1234 1234 1234" maxlength="19" required />
+        <div class="inline">
+          <input type="text" placeholder="MM / AA" maxlength="7" required />
+          <input type="text" placeholder="CVC" maxlength="4" required />
+        </div>
+
+        <label for="nome">Nome do titular</label>
+        <input type="text" id="nome" placeholder="Nome completo" required />
+
+        <label for="endereco">Endereço</label>
+        <input type="text" id="endereco" placeholder="Rua, número, bairro" required />
+        <input type="text" placeholder="Cidade" required />
+        <input type="text" placeholder="Estado" required />
+
+        <div class="termos">
+          <input type="checkbox" id="aceite" required />
+          <label for="aceite">Aceito os <a href="#">termos de serviço</a></label>
+        </div>
+
+        <button type="submit" class="btn-assinar">Assinar</button>
+        <p class="powered">Simulação inspirada por <strong>Stripe</strong></p>
+      </form>
+    </div>
+  </div>
+</body>
+</html>
