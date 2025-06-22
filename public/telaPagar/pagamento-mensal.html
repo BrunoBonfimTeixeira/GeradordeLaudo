@@ -5,11 +5,17 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 
   <meta http-equiv="Content-Security-Policy"
-        content="default-src 'self'; font-src 'self' https://fonts.gstatic.com https://cdnjs.cloudflare.com;
-                 style-src 'self' https://fonts.googleapis.com https://cdnjs.cloudflare.com;">
+      content="
+        default-src 'self';
+        script-src 'self' 'unsafe-inline' https://www.gstatic.com https://www.googleapis.com;
+        style-src 'self' 'unsafe-inline' https://fonts.googleapis.com https://cdnjs.cloudflare.com;
+        font-src 'self' https://fonts.gstatic.com https://cdnjs.cloudflare.com;
+        connect-src 'self' https://firestore.googleapis.com https://identitytoolkit.googleapis.com https://securetoken.googleapis.com;
+      ">
+
 
   <title>Pagamento Mensal</title>
-  <link rel="stylesheet" href="pagamento-mensal.css">
+  <link rel="stylesheet" href="../telaPagar/pagamento-mensal.css">
 
   <!-- Font Awesome para ícones -->
   <link rel="stylesheet"
