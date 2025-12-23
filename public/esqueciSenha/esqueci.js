@@ -15,5 +15,5 @@ document.getElementById('recuperar').addEventListener('click', async () => {
 });
 
 document.getElementById('voltar').addEventListener('click', () => {
-  window.location.href = "../login/login.html";
+  window.location.href = "/index.html";
 });

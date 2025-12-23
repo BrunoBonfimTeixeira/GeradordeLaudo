@@ -1,138 +1,107 @@
-/* Reset básico */
-* {
-  margin: 0;
-  padding: 0;
-  box-sizing: border-box;
-}
-
 body {
+  margin: 0;
   font-family: 'Segoe UI', sans-serif;
-  background-color: #f8f9fa;
-  color: #333;
-  line-height: 1.5;
+  background-color: #f1f1f1;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 100vh;
 }
 
-/* Container principal */
 .pagamento-container {
-  max-width: 500px;
-  margin: 60px auto;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+}
+
+.pagamento-card {
   background: white;
-  padding: 30px 25px;
+  padding: 30px;
   border-radius: 12px;
-  box-shadow: 0 0 20px rgba(0, 0, 0, 0.08);
+  text-align: center;
+  max-width: 400px;
+  width: 100%;
+  box-shadow: 0 10px 25px rgba(0, 0, 0, 0.15);
   position: relative;
 }
 
-/* Botão de voltar */
-.fechar-btn {
-  display: inline-flex;
-  align-items: center;
-  gap: 6px;
-  margin-bottom: 20px;
-  text-decoration: none;
-  color: #007bff;
-  font-weight: bold;
-  transition: color 0.2s ease;
+.close-btn {
+  position: absolute;
+  right: 15px;
+  top: 15px;
+  border: none;
+  background: none;
+  font-size: 20px;
+  cursor: pointer;
 }
 
-.fechar-btn i {
-  font-size: 16px;
-}
-
-.fechar-btn:hover {
-  color: #0056b3;
-}
-
-/* Caixa principal de pagamento */
-.caixa-pagamento h2 {
-  font-size: 22px;
-  color: #2c3e50;
+h1 {
   margin-bottom: 10px;
-  display: flex;
-  align-items: center;
-  gap: 10px;
+  color: #2c3e50;
 }
 
 .descricao {
-  font-size: 16px;
+  font-size: 1.1rem;
   color: #555;
-  margin-bottom: 25px;
+  margin-bottom: 20px;
 }
 
-/* QR Code Section */
-.qrcode-section {
-  text-align: center;
-  margin-top: 20px;
-  padding: 15px;
-  background-color: #f1f1f1;
-  border-radius: 10px;
+.qr-image {
+  width: 100%;
+  max-width: 280px;
+  margin: 20px auto;
+  display: block;
   border: 1px solid #ddd;
+  border-radius: 10px;
 }
 
-.qrcode-section h3 {
-  font-size: 18px;
-  color: #2c3e50;
-  margin-bottom: 12px;
+.pix-codigo {
+  margin-top: 20px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
 }
 
-.qrcode-img {
-  width: 220px;
-  height: auto;
+#pixCode {
+  width: 100%;
+  height: 100px;
+  padding: 10px;
+  font-size: 0.9rem;
+  border: 1px solid #ccc;
   border-radius: 6px;
+  resize: none;
   margin-bottom: 10px;
 }
 
-.qrcode-section p {
-  font-size: 15px;
-  margin: 6px 0;
+#copyBtn {
+  background-color: #f39c12;
+  color: white;
+  padding: 10px 16px;
+  border: none;
+  border-radius: 6px;
+  cursor: pointer;
+  font-weight: bold;
 }
 
-.pix-aviso {
-  font-style: italic;
-  font-size: 14px;
-  color: #666;
-  margin-top: 10px;
+#copyBtn:hover {
+  background-color: #d78f0e;
 }
 
-/* Botão de ação */
-.btn-assinar {
-  width: 100%;
-  padding: 12px;
-  background-color: #00b894;
+.confirmar-btn {
+  margin-top: 20px;
+  background-color: #27ae60;
+  color: white;
+  padding: 12px 20px;
   border: none;
   border-radius: 8px;
-  font-size: 16px;
   font-weight: bold;
-  color: white;
-  margin-top: 20px;
+  font-size: 1rem;
   cursor: pointer;
-  transition: background 0.3s ease;
+  transition: background-color 0.3s ease;
+  width: 100%;
 }
 
-.btn-assinar:hover {
-  background-color: #019974;
-}
-
-/* Rodapé */
-.powered {
-  text-align: center;
-  font-size: 12px;
-  color: #aaa;
-  margin-top: 20px;
-}
-
-/* Responsivo */
-@media (max-width: 600px) {
-  .pagamento-container {
-    margin: 30px 20px;
-    padding: 20px;
-  }
-
-  .qrcode-img {
-    width: 180px;
-  }
-
-  .caixa-pagamento h2 {
-    font-size: 20px;
-  }
+.confirmar-btn:hover {
+  background-color: #219150;
 }

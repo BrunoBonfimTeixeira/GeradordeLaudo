@@ -3,37 +3,35 @@ document.addEventListener('DOMContentLoaded', () => {
   const logoutBtn = document.getElementById('logoutBtn');
   let planoSelecionado = null;
 
-  // Redireciona para a tela de pagamento
+  // ✅ Redireciona para a tela principal de planos (pagar.html)
   if (pagarBtn) {
     pagarBtn.addEventListener('click', () => {
-      window.location.href = '../telaPagar/telaDePagamento.html';
+      window.location.href = './pagar.html';
     });
   }
 
-  // Logout
+  // ✅ Redireciona para login (index na raiz)
   if (logoutBtn) {
     logoutBtn.addEventListener('click', () => {
-      window.location.href = '../login/login.html';
+      window.location.href = '/principal/laudo.html';
     });
   }
 
-  // Seleciona um plano
+  // ✅ Selecionar plano
   window.selecionarPlano = function (plano) {
     planoSelecionado = plano;
 
-    // Remove classe ativa de todos os botões
     document.querySelectorAll('.btn-plano').forEach(btn => {
       btn.classList.remove('ativo');
     });
 
-    // Adiciona a classe ao botão clicado
     const btnSelecionado = document.querySelector(`.btn-plano[data-plano="${plano}"]`);
     if (btnSelecionado) {
       btnSelecionado.classList.add('ativo');
     }
   };
 
-  // Simula o pagamento
+  // ✅ Simular pagamento e redirecionar
   window.fazerPagamento = function () {
     if (!planoSelecionado) {
       alert("Selecione um plano antes de continuar.");
@@ -42,11 +40,11 @@ document.addEventListener('DOMContentLoaded', () => {
 
     alert(`Redirecionando para pagamento do plano ${planoSelecionado.toUpperCase()}...`);
 
-    // Exemplo de redirecionamento baseado no plano
     if (planoSelecionado === 'mensal') {
-      window.location.href = 'pagamento-mensal.html';
+      window.location.href = "/telaPagar/pagamento-mensal.html";
+
     } else if (planoSelecionado === 'anual') {
-      window.location.href = 'pagamento-anual.html';
+      window.location.href = './pagamento-anual.html';
     }
   };
 });

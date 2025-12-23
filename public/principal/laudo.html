@@ -5,58 +5,169 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Laudo - RM Cardíaca</title>
 
-  <!-- Estilo e Bibliotecas -->
-  <link rel="stylesheet" href="laudo.css">
+  <link rel="stylesheet" href="./laudo.css">
+
+  <!-- Libs -->
   <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
-  <script type="module" src="../firebase/firebaseConfig.js"></script>
+  <script src="https://kit.fontawesome.com/a076d05399.js" crossorigin="anonymous"></script>
 </head>
 
 <body>
-  <div class="container">
+  <!-- TOPO -->
+  <header class="topbar">
+    <div class="topbar-left">
+      <span class="brand-mark">λ</span>
+      <span class="brand-text">Hub de Ressonância</span>
+    </div>
 
-    <!-- Painel Lateral -->
+    <div class="top-tabs">
+      <button onclick="location.href='/ensino/index.html'" class="tab-button">
+        Hub Ensino
+      </button>
+      <button onclick="location.href='/principal/laudo.html'" class="tab-button active">
+        Hub Laudo
+      </button>
+    </div>
+
+    <div class="topbar-right">
+      <div class="topbar-user-info">
+        <span id="userName" class="topbar-user-name">Dr(a).</span>
+        <span id="userEmail" class="topbar-user-email">email@exemplo.com</span>
+      </div>
+      <!-- botão para abrir o menu lateral no mobile -->
+      <button id="triggerArea" class="topbar-toggle" aria-label="Abrir menu">
+        <i class="fas fa-bars"></i>
+      </button>
+    </div>
+  </header>
+
+  <!-- LAYOUT PRINCIPAL -->
+  <div class="layout">
+
+    <!-- PAINEL LATERAL -->
     <aside class="side-panel" id="sidePanel">
-      <div id="userInfo">
-        <div id="userAvatar">👨‍⚕️</div>
-        <h2 id="saudacao">Olá, Dr!</h2>
-        <p id="userCrm"></p>
-        <button id="logoutBtn" class="logout-btn">Sair</button>
+      <div class="side-user-card" id="userInfo">
+        <div class="avatar">
+          <span id="userAvatar">👨‍⚕️</span>
+        </div>
+        <div class="avatar-info">
+          <p id="saudacao" class="avatar-name">Olá, Dr(a)!</p>
+          <p id="userCrm" class="avatar-crm">CRM ••••</p>
+          <p id="mensalidadeInfo" class="mensalidade-status"></p>
+          <button id="btnPagamento" class="payment-btn" type="button" style="display:none;">
+            💳 Gerenciar Mensalidade
+          </button>
+        </div>
       </div>
 
-      <hr class="separator">
+      <nav class="side-nav">
+        <p class="side-title">Ferramentas</p>
 
-      <p class="calculate-function">Calcule a Função</p>
-      <button id="compareBtn" class="compare-btn">Comparar a um Valor de Referência</button>
-      <button id="reference1" class="reference-btn" style="display: none;">Referência 1</button>
+        <button id="heartBtn" class="nav-btn primary">
+          <span class="nav-icon"><i class="fas fa-heartbeat"></i></span>
+          <span>RM Coração</span>
+        </button>
 
-      <button id="heartBtn" class="heart-btn">RM Coração</button>
+        <button id="compareBtn" class="nav-btn secondary">
+          <span class="nav-icon"><i class="fas fa-balance-scale"></i></span>
+          <span>Comparar referência</span>
+        </button>
 
-      <!-- Botões de rotina -->
-      <div id="routineButtons" class="routine-buttons" style="display: none;">
-        <button class="routine-btn" id="homemBtn">- Homem Rotina</button>
-        <button class="routine-btn" id="mulherBtn">- Mulher Rotina</button>
+        <button id="reference1" class="nav-btn secondary" style="display:none;">
+          <span class="nav-icon"><i class="fas fa-book-medical"></i></span>
+          <span>Referência 1</span>
+        </button>
+
+        <div id="routineButtons" class="routine-buttons" style="display:none;">
+          <button class="nav-btn subtle" id="homemBtn">
+            <span class="nav-icon"><i class="fas fa-male"></i></span>
+            <span>Rotina (Homem)</span>
+          </button>
+          <button class="nav-btn subtle" id="mulherBtn">
+            <span class="nav-icon"><i class="fas fa-female"></i></span>
+            <span>Rotina (Mulher)</span>
+          </button>
+        </div>
+      </nav>
+
+      <div class="side-footer">
+        <button id="logoutBtn" class="logout-btn" type="button">
+          <i class="fas fa-sign-out-alt"></i>
+          <span>Sair</span>
+        </button>
+        <small class="side-footer-text">Versão beta · BBT Sistemas</small>
       </div>
     </aside>
 
-    <!-- Conteúdo Principal -->
+    <!-- CONTEÚDO PRINCIPAL -->
     <main class="main-content">
-      <h1>Laudo RM Cardíaca</h1>
-
-      <!-- Informações do paciente e gráfico -->
-      <section class="patient-info">
-        <div class="info-box">
-          <h2 id="patientName">Nome do Paciente: João Silva</h2>
-          <p id="patientDate">Data: 15/06/2025</p>
+      <section class="page-header">
+        <div>
+          <h1>Laudo RM Cardíaca</h1>
+          <p class="page-subtitle">
+            Central de laudos para estudos e rotina clínica em ressonância magnética cardíaca.
+          </p>
         </div>
+      </section>
 
-        <div class="chart-box">
-          <canvas id="myChart"></canvas>
+      <!-- PACIENTE + GRÁFICO -->
+      <section class="grid-two">
+        <!-- Paciente -->
+        <article class="card patient-card">
+          <div class="card-header">
+            <span class="card-chip">Paciente atual</span>
+          </div>
+          <div class="card-body">
+            <h2 id="patientName" class="patient-name">
+              Nome do Paciente: 
+            </h2>
+            <p id="patientDate" class="patient-date">
+              Data: 
+            </p>
+
+            <div class="patient-meta">
+              <div class="meta-item">
+                <span class="meta-label">Modalidade</span>
+                <span class="meta-value">RM Cardíaca</span>
+              </div>
+              <div class="meta-item">
+                <span class="meta-label">Status</span>
+                <span class="meta-pill done">Em elaboração</span>
+              </div>
+            </div>
+          </div>
+        </article>
+
+        <!-- Gráfico -->
+        <article class="card chart-card">
+          <div class="card-header">
+            <span class="card-title">
+              <i class="fas fa-chart-line"></i> Função ventricular (preview)
+            </span>
+          </div>
+          <div class="card-body chart-body">
+            <canvas id="myChart"></canvas>
+          </div>
+        </article>
+      </section>
+
+      <!-- ESTADO INICIAL / INFO -->
+      <section class="card empty-state">
+        <div class="empty-icon">
+          <i class="fas fa-file-medical"></i>
+        </div>
+        <div class="empty-text">
+          <h3>Nenhum laudo aberto no momento</h3>
+          <p>
+            Clique em <strong>“RM Coração”</strong> no menu lateral para iniciar um novo laudo
+            ou continuar a rotina de avaliação volumétrica.
+          </p>
         </div>
       </section>
     </main>
   </div>
 
-  <!-- Scripts -->
-  <script type="module" src="../principal/laudo.js"></script>
+  <!-- Seu JS (permanece o mesmo que você enviou) -->
+  <script type="module" src="/principal/laudo.js"></script>
 </body>
 </html>

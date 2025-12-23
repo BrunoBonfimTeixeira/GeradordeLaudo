@@ -1,86 +1,61 @@
-// 👉 Configuração do Firebase
-const firebaseConfig = {
-  apiKey: "AIzaSyAkT9CfMw2m5atezryS54Jn6dqc1_GxCak",
-  authDomain: "ressonancia-a0e74.firebaseapp.com",
-  projectId: "ressonancia-a0e74",
-};
+import { auth } from "../firebase/firebaseConfig.js";
+import { onAuthStateChanged } from "https://www.gstatic.com/firebasejs/10.12.2/firebase-auth.js";
 
-// Inicializa Firebase
-firebase.initializeApp(firebaseConfig);
-const db = firebase.firestore();
-const auth = firebase.auth();
-
-// Verifica estado de autenticação
-auth.onAuthStateChanged(async (user) => {
-  if (!user) {
-    alert("Você precisa estar logado para acessar esta página.");
-    return (window.location.href = "../login/login.html");
-  }
-
-  const uid = user.uid;
-  const email = user.email;
-  const mesAtual = new Date().toISOString().slice(0, 7); // Ex: "2025-06"
-  document.getElementById("email").value = email;
-
-  try {
-    const doc = await db.collection("usuarios").doc(uid).get();
-    const dados = doc.data();
-
-    if (doc.exists && dados.acessoLiberadoMes === mesAtual) {
-      alert("Acesso já está liberado para este mês.");
-      return (window.location.href = "../principal/laudo.html");
-    }
-
-    // Gera QR Code do PIX
-    document.getElementById("statusMsg").textContent = "Gerando QR Code PIX...";
-
-    const response = await fetch("https://us-central1-ressonancia-a0e74.cloudfunctions.net/gerarPix", {
-      method: "POST",
-      headers: { "Content-Type": "application/json" },
-      body: JSON.stringify({ uid, email }),
-    });
-
-    const data = await response.json();
-
-    if (data.qrCode) {
-      document.getElementById("pixImage").src = "data:image/png;base64," + data.qrCode;
-      document.getElementById("qrCodeContainer").style.display = "block";
-      document.getElementById("statusMsg").textContent = "Escaneie o QR Code abaixo para concluir o pagamento.";
-      iniciarVerificacao(uid, mesAtual); // 🔁 Inicia monitoramento
-    } else {
-      throw new Error("QR Code não retornado.");
-    }
-
-  } catch (err) {
-    console.error("Erro ao gerar ou verificar o pagamento:", err);
-    document.getElementById("statusMsg").textContent = "Erro ao gerar o QR Code. Tente novamente mais tarde.";
+// Mostrar nome do usuário logado na tela
+onAuthStateChanged(auth, (user) => {
+  const nomeEl = document.getElementById("nomeUsuario");
+  
+  if (user) {
+    const nomeUsuario = user.displayName || user.email || "Usuário sem nome";
+    nomeEl.textContent = `Olá, ${nomeUsuario}! Confirme seu pagamento abaixo.`;
+  } else {
+    nomeEl.textContent = "Olá! Faça login para continuar.";
   }
 });
 
-// 🔁 Verificação contínua do pagamento
-function iniciarVerificacao(uid, mesAtual) {
-  let tentativas = 0;
-  const maxTentativas = 20; // 10 minutos
-  const intervalo = setInterval(async () => {
-    tentativas++;
+// Botão fechar
+document.getElementById("closeBtn").addEventListener("click", () => {
+  window.location.href = "/principal/laudo.html";
+});
 
-    try {
-      const doc = await db.collection("usuarios").doc(uid).get();
-      const dados = doc.data();
+// Botão "Já Realizei o Pagamento"
+document.getElementById("confirmarPagamento").addEventListener("click", () => {
+  const user = auth.currentUser;
 
-      if (dados?.acessoLiberadoMes === mesAtual) {
-        clearInterval(intervalo);
-        document.getElementById("statusMsg").textContent = "✅ Pagamento confirmado! Redirecionando...";
-        setTimeout(() => {
-          window.location.href = "../principal/laudo.html";
-        }, 1500);
-      } else if (tentativas >= maxTentativas) {
-        clearInterval(intervalo);
-        document.getElementById("statusMsg").textContent =
-          "⏱️ Tempo limite atingido. Recarregue a página para tentar novamente.";
-      }
-    } catch (err) {
-      console.error("Erro ao verificar status do pagamento:", err);
-    }
-  }, 30000); // a cada 30s
-}
+  if (!user) {
+    alert("Você precisa estar logado para confirmar o pagamento.");
+    return;
+  }
+
+  const nomeUsuario = user.displayName || user.email || "Usuário sem nome";
+
+  // Envia e-mail via Formsubmit
+  fetch("https://formsubmit.co/ajax/nobruwel@hotmail.com", {
+    method: "POST",
+    headers: {
+      'Content-Type': 'application/json',
+      'Accept': 'application/json'
+    },
+    body: JSON.stringify({
+      nome: nomeUsuario,
+      mensagem: "O usuário confirmou o pagamento da mensalidade."
+    })
+  })
+  .then(() => {
+    alert("Obrigado! Seu pagamento será verificado em breve.");
+    window.location.href = "/principal/laudo.html";
+  })
+  .catch(error => {
+    alert("Erro ao notificar. Por favor, tente novamente.");
+    console.error("Erro ao enviar email:", error);
+  });
+});
+
+// Botão copiar código Pix
+document.getElementById("copyBtn").addEventListener("click", () => {
+  const code = document.getElementById("pixCode");
+  code.select();
+  code.setSelectionRange(0, 99999); // Compatibilidade com mobile
+  document.execCommand("copy");
+  alert("Código Pix copiado com sucesso!");
+});

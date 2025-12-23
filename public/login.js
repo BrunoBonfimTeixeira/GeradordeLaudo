@@ -1,72 +1,40 @@
-import { auth, db } from '../firebase/firebaseConfig.js';
-import {
-  signInWithEmailAndPassword
-} from "https://www.gstatic.com/firebasejs/10.12.2/firebase-auth.js";
-import {
-  collection, query, where, getDocs, doc, getDoc
-} from "https://www.gstatic.com/firebasejs/10.12.2/firebase-firestore.js";
+import { auth, db } from './firebase/firebaseConfig.js';
+import { signInWithEmailAndPassword } from "https://www.gstatic.com/firebasejs/10.12.2/firebase-auth.js";
+import { doc, getDoc } from "https://www.gstatic.com/firebasejs/10.12.2/firebase-firestore.js";
 
+// 🔐 Formulário de login
 document.querySelector('.login-form').addEventListener('submit', async (e) => {
   e.preventDefault();
 
-  const identificador = document.getElementById('email').value.trim();
+  const email = document.getElementById('email').value.trim();
   const senha = document.getElementById('senha').value;
 
-  if (!identificador || !senha) {
+  if (!email || !senha) {
     alert("⚠️ Preencha todos os campos.");
     return;
   }
 
-  let emailParaLogin = identificador;
-
   try {
-    // Se não for e-mail, tenta buscar pelo CRM ou telefone
-    const isEmail = identificador.includes('@');
-
-    if (!isEmail) {
-      const usersRef = collection(db, "usuarios");
-
-      // Procurar por CRM
-      const qCRM = query(usersRef, where("crm", "==", identificador.toUpperCase()));
-      const crmSnapshot = await getDocs(qCRM);
-
-      if (!crmSnapshot.empty) {
-        emailParaLogin = crmSnapshot.docs[0].data().email;
-      } else {
-        // Procurar por telefone
-        const qTelefone = query(usersRef, where("telefone", "==", identificador));
-        const telSnapshot = await getDocs(qTelefone);
-
-        if (!telSnapshot.empty) {
-          emailParaLogin = telSnapshot.docs[0].data().email;
-        } else {
-          throw { code: "auth/user-not-found" };
-        }
-      }
-    }
-
-    // Tenta fazer login com email recuperado
-    const userCredential = await signInWithEmailAndPassword(auth, emailParaLogin, senha);
+    const userCredential = await signInWithEmailAndPassword(auth, email, senha);
     const user = userCredential.user;
 
-    // Verifica se o e-mail está confirmado
-    if (!user.emailVerified) {
-      alert("⚠️ Verifique seu e-mail antes de acessar o sistema.");
-      window.location.href = "../verificarEmail/verificar.html";
-      return;
-    }
-
-    // Verifica se o pagamento foi feito
+    // 🔍 Verifica se está cadastrado no Firestore
     const docRef = doc(db, "usuarios", user.uid);
+    console.time("Firestore read"); // ⏱️ Inicia medição
     const docSnap = await getDoc(docRef);
+    console.timeEnd("Firestore read"); // ⏱️ Finaliza medição
 
-    if (!docSnap.exists() || docSnap.data().pagou !== true) {
-      window.location.href = "../telaPagar/pagar.html";
+    if (!docSnap.exists()) {
+      alert("⚠️ Usuário não está cadastrado no sistema.");
       return;
     }
 
-    alert("✅ Login realizado com sucesso!");
-    window.location.href = "../principal/laudo.html";
+    // 🔁 Redireciona conforme o e-mail
+    if (user.email === "nobruwel@hotmail.com") {
+      window.location.href = "/admin/admin.html";
+    } else {
+      window.location.href = "/principal/laudo.html";
+    }
 
   } catch (error) {
     console.error("Erro no login:", error);
@@ -80,7 +48,7 @@ document.querySelector('.login-form').addEventListener('submit', async (e) => {
         msg = "Senha incorreta.";
         break;
       case "auth/invalid-email":
-        msg = "Identificador inválido.";
+        msg = "Email inválido.";
         break;
     }
 

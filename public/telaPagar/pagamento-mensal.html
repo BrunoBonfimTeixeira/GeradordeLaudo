@@ -1,60 +1,37 @@
 <!DOCTYPE html>
-<html lang="pt-BR">
+<html lang="pt-br">
 <head>
   <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-
-  <meta http-equiv="Content-Security-Policy"
-      content="
-        default-src 'self';
-        script-src 'self' 'unsafe-inline' https://www.gstatic.com https://www.googleapis.com;
-        style-src 'self' 'unsafe-inline' https://fonts.googleapis.com https://cdnjs.cloudflare.com;
-        font-src 'self' https://fonts.gstatic.com https://cdnjs.cloudflare.com;
-        connect-src 'self' https://firestore.googleapis.com https://identitytoolkit.googleapis.com https://securetoken.googleapis.com;
-      ">
-
-
-  <title>Pagamento Mensal</title>
-  <link rel="stylesheet" href="./pagamento-anual.css">
-
-  <!-- Font Awesome para ícones -->
-  <link rel="stylesheet"
-        href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css"
-        crossorigin="anonymous" referrerpolicy="no-referrer" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Pagamento Mensalidade</title>
+  <link rel="stylesheet" href="pagamento-mensal.css">
 </head>
 <body>
   <div class="pagamento-container">
-    <a href="pagar.html" class="fechar-btn" title="Voltar">
-      <i class="fas fa-arrow-left"></i> Voltar
-    </a>
+    <div class="pagamento-card">
+      <button class="close-btn" id="closeBtn">❌</button>
 
-    <div class="caixa-pagamento">
-      <h2><i class="fas fa-credit-card"></i> Pagamento Mensal</h2>
-      <p class="descricao">Assinatura mensal do sistema - R$220,00</p>
+      <h1>Pagamento Mensal</h1>
 
-      <div class="qrcode-section">
-        <h3>Pagamento via PIX</h3>
+      <!-- Nome do usuário logado (será preenchido via JS) -->
+      <p id="nomeUsuario" class="nome-pagador">Carregando usuário...</p>
 
-        <!-- Campo oculto com o e-mail do usuário -->
-        <input type="email" id="email" readonly hidden />
+      <p class="descricao">Valor: <strong>R$ 220,00</strong></p>
+      <p>Escaneie o QR Code abaixo ou copie o código Pix:</p>
 
-        <!-- QR Code dinâmico -->
-        <div id="qrCodeContainer" style="display:none; text-align:center;">
-          <p>Escaneie o QR Code abaixo:</p>
-          <img id="pixImage" style="max-width:300px; border-radius: 8px;" alt="QR Code de Pagamento" />
-        </div>
+      <img src="../imagem/Qrcode220.png" alt="QR Code Nubank Mensal" class="qr-image">
 
-        <!-- Mensagem de status do pagamento -->
-        <p id="statusMsg" style="text-align:center; margin-top:15px; font-size:14px;"></p>
+      <div class="pix-codigo">
+        <textarea id="pixCode" readonly>
+00020126580014BR.GOV.BCB.PIX0136986d28c1-88fa-44e3-b347-4d56f74fa7fb5204000053039865406220.005802BR5921Bruno Bonfim Teixeira6009SAO PAULO62140510IGzCRAWwBf63041D92
+        </textarea>
+        <button id="copyBtn">📋 Copiar Código</button>
       </div>
+
+      <button class="confirmar-btn" id="confirmarPagamento">Já Realizei o Pagamento</button>
     </div>
   </div>
 
-  <!-- Firebase -->
-  <script src="https://www.gstatic.com/firebasejs/9.6.10/firebase-app-compat.js"></script>
-  <script src="https://www.gstatic.com/firebasejs/9.6.10/firebase-auth-compat.js"></script>
-
-  <!-- Script principal -->
-  <script src="./pagamento-mensal.js"></script>
+  <script type="module" src="pagamento-mensal.js"></script>
 </body>
 </html>

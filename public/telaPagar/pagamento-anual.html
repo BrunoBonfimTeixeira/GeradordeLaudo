@@ -1,47 +1,29 @@
 <!DOCTYPE html>
-<html lang="pt-BR">
+<html lang="pt-br">
 <head>
   <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-
-  <meta http-equiv="Content-Security-Policy" content="default-src 'self'; font-src 'self' https://fonts.gstatic.com https://cdnjs.cloudflare.com; style-src 'self' https://fonts.googleapis.com https://cdnjs.cloudflare.com;">
-  
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
   <title>Pagamento Anual</title>
   <link rel="stylesheet" href="pagamento-anual.css" />
-
-  <!-- Font Awesome -->
-  <link
-    rel="stylesheet"
-    href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css"
-    crossorigin="anonymous"
-    referrerpolicy="no-referrer"
-  />
 </head>
 <body>
-  <main class="pagamento-container">
-    
-    <!-- Botão Voltar -->
-    <a href="pagar.html" class="fechar-btn" title="Voltar para página anterior">
-      <i class="fas fa-arrow-left"></i> Voltar
-    </a>
+  <div class="pagamento-container">
+    <div class="pagamento-card">
+      <button class="close-btn" id="closeBtn">❌</button>
+      <h1>Pagamento Anual</h1>
+      <p class="descricao">Valor: <strong>R$ 2.400,00</strong></p>
+      <p>Escaneie o QR Code abaixo ou copie o código Pix:</p>
+      <img src="../imagem/2400.png" alt="QR Code Nubank" class="qr-image">
 
-    <!-- Caixa de Pagamento -->
-    <section class="caixa-pagamento">
-      <h2><i class="fas fa-credit-card"></i> Pagamento Anual</h2>
-      <p class="descricao">Assinatura anual do sistema - <strong>R$ 2.400,00</strong></p>
-
-      <!-- QR Code PIX -->
-      <div class="qrcode-section">
-        <h3>Ou pague via PIX (Nubank)</h3>
-        <img
-          src="../imagem/Qrcode2400.png"
-          alt="QR Code para pagamento de R$2400 via PIX Nubank"
-          class="qrcode-img"
-        />
-        <p><strong>Valor:</strong> R$ 2.400,00</p>
-        <p class="pix-aviso">Após o pagamento, o acesso será liberado automaticamente.</p>
+      <div class="pix-codigo">
+        <textarea id="pixCode" readonly>00020126580014BR.GOV.BCB.PIX0136986d28c1-88fa-44e3-b347-4d56f74fa7fb52040000530398654072400.005802BR5921Bruno Bonfim Teixeira6009SAO PAULO62140510emw7tZlr0w6304D480</textarea>
+        <button id="copyBtn">📋 Copiar Código</button>
       </div>
-    </section>
-  </main>
+
+      <button class="confirmar-btn" id="confirmarPagamento">Já Realizei o Pagamento</button>
+    </div>
+  </div>
+
+  <script src="pagamento-anual.js"></script>
 </body>
 </html>

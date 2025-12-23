@@ -69,7 +69,7 @@ body {
 }
 
 .form-row-name input {
-  width: 20%;
+  width: 220px;
 }
 
 .patient-info form {
@@ -149,7 +149,11 @@ form input {
   margin-bottom: 1rem;
   font-size: 1rem;
 }
-
+.form-row-idade input,
+.form-row-peso input,
+.form-row-altura input {
+  width: 70px;
+}
 form button {
   background-color: #034a74;
   color: #fff;
@@ -425,25 +429,44 @@ input.input-manual::placeholder {
   margin-right: 4px;
 }
 
+.voltar {
+  padding-bottom: 15px;
+}
+
 .form-row-group {
   display: flex;
-  gap: 4px;
   flex-wrap: wrap;
   align-items: flex-end;
-  padding-left: 15px;
-  padding-bottom: 2%;
+  gap: 10px;
 }
 
 .form-row-name {
-  flex: 2;
   display: flex;
   flex-direction: column;
+  padding-bottom: 15px;
 }
+
+.form-row-name label {
+  font-weight: bold;
+  margin-bottom: 4px;
+  font-size: 14px;
+}
+
+.form-row-name input {
+  border: 1px solid #ccc;
+  border-radius: 6px;
+  font-size: 14px;
+  min-width: 120px;
+}
+
+
 
 .form-row-idade,
 .form-row-peso,
 .form-row-altura {
-  width: 50px;
+ display: flex;
+  flex-direction: column;
+  margin: 0;
 }
 
 .form-row {

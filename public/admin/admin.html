@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Painel do Administrador</title>
+  <link rel="stylesheet" href="admin.css">
+  <script type="module" src="../firebase/firebaseConfig.js"></script>
+</head>
+<body>
+  <div class="admin-container">
+    <h1>👨‍💼 Painel do Administrador</h1>
+    <div class="table-wrapper">
+      <table>
+        <thead>
+          <tr>
+            <th>Nome</th>
+            <th>E-mail</th>
+            <th>CRM</th>
+            <th>Plano</th>
+            <th>Data de Vencimento</th>
+            <th>Ação</th>
+          </tr>
+        </thead>
+        <tbody id="usuariosTabela"></tbody>
+      </table>
+    </div>
+  </div>
+
+  <script type="module" src="admin.js"></script>
+</body>
+</html>

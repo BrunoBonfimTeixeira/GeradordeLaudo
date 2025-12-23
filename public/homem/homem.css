@@ -1,493 +1,1801 @@
-/* Reset básico */
+/* ===========================
+   PALETA (referência)
+   Primário:   #0e7490  (teal médico)
+   Secundário: #0369a1  (azul)
+   Acento:     #22c55e  (verde sucesso)
+   Fundo:      #f1f5f9
+=========================== */
+
+/* ===========================
+   RESET BÁSICO
+=========================== */
 * {
   margin: 0;
   padding: 0;
   box-sizing: border-box;
 }
 
+/* ===========================
+   BASE
+=========================== */
 body {
-  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-  background-color: #f0f4f8;
-  display: flex;
-  justify-content: flex-start;
-  gap: 2rem;
-  flex-wrap: wrap;
-  flex-direction: row;
+  font-family: "Segoe UI", system-ui, -apple-system, BlinkMacSystemFont,
+    "Roboto", sans-serif;
+  background: radial-gradient(circle at top, #e5f3f8 0, #edf2f7 45%, #e2e8f0 100%);
+  color: #0f172a;
 }
 
+/* Metade ESQUERDA – todo o conteúdo (form, planilha, resultados) */
 .wrapper {
-  display: flex;
-  width: 100%;
-  gap: 10px;
+  position: relative;
+  width: 50vw;
+  min-height: 100vh;
+  padding: 16px 18px 24px;
+  box-sizing: border-box;
+  overflow-y: auto;
 }
 
+/* Empilha os blocos com respiro entre eles */
 .main-container {
-  width: 65%;
-  padding-left: 15px;
-  padding-top: 5px;
-  box-sizing: border-box;
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
 }
 
-.copy-container {
-  width: 35%;
-  display: flex;
-  justify-content: flex-end;
-  align-items: flex-start;
-  box-sizing: border-box;
+/* Títulos gerais */
+h1,
+h2 {
+  color: #0f3c66;
+  font-weight: 600;
 }
+
+/* Pequeno subtítulo azul */
+.patient-title,
+.planilha-titulo {
+  font-size: 13px;
+  font-weight: 600;
+  color: #0f3c66;
+  letter-spacing: 0.03em;
+  text-transform: uppercase;
+}
+
+/* ===========================
+   CABEÇALHO PACIENTE
+=========================== */
 
 .container-cadastro {
-  padding-left: 1%;
+  width: 100%;
   display: flex;
-  flex-direction: row;
-  justify-content: flex-start;
-  max-width: 50%;
-  height: max-content;
-  flex-wrap: wrap;
+  justify-content: center;
 }
 
-.container-cadastro .form-row {
+.patient-info {
+  width: 100%;
+  max-width: 1400px;
+  background: #ffffff;
+  border-radius: 14px;
+  padding: 12px 16px;
+  box-shadow: 0 18px 40px rgba(15, 23, 42, 0.06);
+  border: 1px solid rgba(148, 163, 184, 0.35);
+  backdrop-filter: blur(6px);
+}
+
+/* Linha com todos os campos */
+.form-row-group.horizontal-group {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+  align-items: flex-end;
+}
+
+/* Campo pequeno (idade, peso, altura, ASC) */
+.form-field {
+  display: flex;
+  flex-direction: column;
+  width: 80px;
+}
+
+.form-field label {
+  font-weight: 600;
+  margin-bottom: 3px;
+  font-size: 11px;
+  color: #4b5563;
+  text-transform: uppercase;
+  letter-spacing: 0.03em;
+}
+
+/* Campo com select mais largo */
+.form-field-selecionar {
+  display: flex;
+  flex-direction: column;
+  min-width: 200px;
+  padding-bottom: 10px;
+}
+
+.form-field-selecionar label {
+  font-weight: 600;
+  margin-bottom: 3px;
+  font-size: 11px;
+  color: #4b5563;
+  text-transform: uppercase;
+  letter-spacing: 0.03em;
+}
+
+.form-field input,
+.form-field select,
+.form-field-selecionar input,
+.form-field-selecionar select {
+  padding: 7px 10px;
+  border-radius: 8px;
+  border: 1px solid #cbd5e1;
+  font-size: 13px;
+  outline: none;
+  background: #f9fafb;
+  transition: border-color 0.15s ease, box-shadow 0.15s ease, background 0.15s;
+}
+
+.form-field input:focus,
+.form-field select:focus,
+.form-field-selecionar input:focus,
+.form-field-selecionar select:focus {
+  border-color: #0e7490;
+  box-shadow: 0 0 0 1px rgba(14, 116, 144, 0.25);
+  background: #ffffff;
+}
+
+/* Botão Voltar */
+.voltar {
+  display: flex;
+  align-items: flex-end;
+}
+
+.btn-voltar {
+  background: linear-gradient(to right, #0e7490, #0369a1);
+  color: #f9fafb;
+  padding: 7px 14px;
+  text-decoration: none;
+  border-radius: 999px;
+  font-size: 13px;
+  font-weight: 500;
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  border: none;
+  box-shadow: 0 10px 20px rgba(15, 118, 110, 0.3);
+  transition: transform 0.12s ease, box-shadow 0.12s ease, filter 0.12s ease;
+}
+
+.btn-voltar:hover {
+  transform: translateY(-1px);
+  filter: brightness(1.05);
+  box-shadow: 0 14px 30px rgba(14, 116, 144, 0.4);
+}
+
+.btn-voltar i {
+  font-size: 13px;
+}
+
+/* Agrupamentos de campos em coluna dupla (Idade/Peso, Altura/Sexo) */
+.field-col-dupla {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+/* Alargar um pouco os campos dessas colunas */
+.field-col-dupla .form-field,
+.field-col-dupla .form-field-selecionar {
+  width: 120px;
+}
+
+/* Função cardíaca */
+.funcoes-cardiacas-container {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+}
+
+.funcoes-titulo {
+  font-weight: 600;
+  font-size: 11px;
+  color: #4b5563;
+  text-transform: uppercase;
+  letter-spacing: 0.03em;
+}
+
+.funcoes-opcoes select {
+  width: 190px;
+}
+
+/* Bloco ASC ocupando a altura dos dois campos (visual tipo card) */
+.field-asc-bloco {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  padding: 6px 10px;
+  border-radius: 14px;
+  background: linear-gradient(145deg, #f1f5f9, #e2e8f0);
+  box-shadow: 0 8px 18px rgba(15, 23, 42, 0.12);
+  min-width: 120px;
+  max-width: 130px;
+}
+
+.field-asc-bloco label {
+  font-weight: 600;
+  margin-bottom: 4px;
+  font-size: 11px;
+  color: #64748b;
+  text-transform: uppercase;
+  letter-spacing: 0.04em;
+}
+
+.field-asc-bloco input {
   flex: 1;
-  margin-right: 0;
+  min-height: 72px;
+  border-radius: 10px;
+  border: 1px solid #cbd5e1;
+  background: #f8fafc;
+  font-size: 14px;
+  text-align: center;
+  font-weight: 600;
+  color: #0f172a;
 }
 
-.container-cadastro .form-row:last-child {
-  margin-right: 0;
-}
-
-.container-cadastro .form-row input {
-  width: 50%;
-  padding: 6px;
-  margin-bottom: 8px;
-  border: 1px solid #ccc;
-  border-radius: 4px;
-}
-
-.container-cadastro label {
-  font-size: 0.875rem;
-  margin-bottom: 5px;
-}
-
-.form-row-name input {
-  width: 20%;
-}
-
-.patient-info form {
+/* Coluna da referência + função cardíaca + botão */
+.field-ref-funcao {
   display: flex;
-  justify-content: flex-start;
-  gap: 1rem;
+  flex-direction: column;
+  gap: 6px;
+  min-width: 260px;
+}
+
+/* Linha Função + botão salvar */
+.field-funcao-salvar {
+  display: flex;
+  align-items: flex-end;
+  gap: 8px;
+}
+
+.field-funcao-salvar .funcoes-cardiacas-container {
+  flex: 1;
+}
+
+/* Botão salvar referência no estilo médico, pill */
+.btn-salvar-ref {
+  height: 38px;
+  padding: 0 18px;
+  border-radius: 999px;
+  border: none;
+  cursor: pointer;
+  font-size: 12px;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.06em;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 6px;
+  background: linear-gradient(135deg, #22c55e, #16a34a);
+  color: #f9fafb;
+  box-shadow: 0 8px 20px rgba(34, 197, 94, 0.35);
+  transition: transform 0.12s ease, box-shadow 0.12s ease, filter 0.12s ease;
+}
+
+.btn-salvar-ref i {
+  font-size: 13px;
+}
+
+.btn-salvar-ref:hover {
+  transform: translateY(-1px);
+  filter: brightness(1.05);
+  box-shadow: 0 12px 26px rgba(22, 163, 74, 0.45);
+}
+
+/* Estado visual quando salvar (usado no JS) */
+.btn-salvar-ref-ok {
+  background: linear-gradient(135deg, #0ea5e9, #0369a1);
+}
+
+.referencia-hint {
+  margin-top: 4px;
+  font-size: 10px;
+  color: #6b7280;
+}
+
+/* Formulário mais compacto */
+.form-field input,
+.form-field select,
+.form-field-selecionar select {
+  padding: 2px 4px !important;
+  height: 32px !important;
+  font-size: 13px !important;
+}
+
+.field-col-dupla {
+  gap: 4px !important;
+}
+
+.field-asc-bloco input {
+  min-height: 40px !important;
+}
+
+/* Reduzir largura do campo SEXO */
+#sexo {
+  width: 120px !important;
+  min-width: 120px !important;
+}
+
+/* Agrupar os campos na mesma linha em telas menores */
+.horizontal-group {
+  display: flex;
   flex-wrap: wrap;
+  gap: 10px;
+  align-items: center;
 }
 
-.patient-info form input {
-  padding: 6px;
-  font-size: 1rem;
+.horizontal-group .form-field {
+  flex: 1;
+  min-width: 130px;
 }
 
-.container-planilha,
-.container-VEesquerdo,
-.containerVDdireito,
-.containerAE,
-.container-ADdireito {
-  width: 93%;
-  background: #fff;
-  padding: 1rem;
-  border-radius: 8px;
-  box-shadow: 0 0 0.625rem rgba(0, 0, 0, 0.1);
-  display: flex;
-  flex-direction: column;
-  height: max-content;
+.form-field input,
+.form-field select {
+  width: 100%;
+  padding: 6px 10px;
+  margin: 0;
 }
 
-.container-botaoGeradordeTexto {
-  width: 38%;
-  background: #fff;
-  padding: 1rem;
-  border-radius: 8px;
-  box-shadow: 0 0 0.625rem rgba(0, 0, 0, 0.1);
-  display: flex;
-  flex-direction: column;
-  height: max-content;
+/* ===========================
+   BLOCOS "MANUAL" / TÍTULOS
+=========================== */
+
+.bloco-manual {
+  margin-top: 6px;
 }
 
-.container-direitos {
-  display: flex;
-  flex-direction: column;
-  gap: 1rem;
+.titulo-bloco {
+  font-size: 13px;
+  font-weight: 600;
+  color: #0e7490;
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  padding: 4px 10px;
+  border-radius: 999px;
+  background: #e0f2fe;
+  border: 1px solid #bae6fd;
+}
+
+/* ===========================
+   PLANILHA DE VOLUMES (EXCEL)
+=========================== */
+
+.container-planilha {
+  width: 100%;
+  background: #ffffff;
+  border-radius: 14px;
+  padding: 10px 12px 14px;
+  box-shadow: 0 18px 40px rgba(15, 23, 42, 0.06);
+  border: 1px solid rgba(148, 163, 184, 0.35);
+}
+
+.planilha-titulo {
+  margin-bottom: 6px;
+  text-align: left;
 }
 
 .summary {
   width: 100%;
-  padding-left: 1.25rem;
   display: flex;
   flex-direction: column;
-  gap: 1rem;
+  gap: 6px;
 }
 
-.patient-title,
-.planilha-titulo {
-  padding-left: 10%;
-  font-size: 15px;
-}
-
-h1, h2 {
-  color: #034a74;
-  text-align: center;
-}
-
-form label {
-  display: block;
-  margin: 1rem 0 0.5rem;
-  color: #555;
-}
-
-form input {
-  width: 100%;
-  padding: 0.5rem;
-  border-radius: 0.375rem;
-  border: 1px solid #ccc;
-  margin-bottom: 1rem;
-  font-size: 1rem;
-}
-
-form button {
-  background-color: #034a74;
-  color: #fff;
-  border: none;
-  padding: 0.625rem 1.25rem;
-  border-radius: 0.5rem;
-  cursor: pointer;
-  display: block;
-  margin-top: 1rem;
-  width: 100%;
-  font-size: 1rem;
-}
-
-form button:hover {
-  background-color: #0288d1;
-}
-
+/* Tabela principal */
 table {
   width: 100%;
   border-collapse: collapse;
-  margin-top: 1.25rem;
+  margin-top: 6px;
 }
 
 table thead {
-  background-color: #034a74;
-  color: white;
+  background: linear-gradient(to right, #0e7490, #0369a1);
+  color: #f9fafb;
 }
 
-table th, table td {
-  padding: 0.625rem;
-  border: 1px solid #ccc;
-  text-align: center;
-  font-size: 1rem;
-}
-
-table td input {
-  width: 90%;
-  padding: 0.375rem;
-  text-align: center;
-  border-radius: 0.25rem;
-  border: 1px solid #ccc;
-  font-size: 1rem;
-}
-
-.info-footer {
-  margin-top: 1.25rem;
-  color: #666;
-  font-size: 0.875rem;
-  text-align: center;
-}
-
-@media (max-width: 768px) {
-  .container {
-    flex-direction: column;
-    padding: 1rem;
-    width: 100%;
-  }
-
-  .patient-info, .summary {
-    width: 100%;
-  }
-
-  h1, h2 {
-    font-size: 1.5rem;
-  }
-
-  form button, #generateReportBtn {
-    width: 100%;
-  }
-
-  table th, table td {
-    font-size: 0.875rem;
-    padding: 0.625rem;
-  }
-
-  #reportContainer {
-    position: static;
-    width: 100%;
-    margin-top: 1rem;
-    height: auto;
-  }
-}
-
-#reportContainer {
-  margin-top: 20px;
-}
-
-#reportContainer h2 {
-  margin-bottom: 15px;
-  color: #333;
-}
-
-#laudoText {
-  width: 100%;
-  height: 450px;
-  padding: 15px;
-  font-size: 14px;
-  resize: vertical;
-  box-sizing: border-box;
-  font-family: Arial, sans-serif;
-  line-height: 1.5;
-}
-
-#generateReportBtn {
-  background-color: #28a745;
-  color: white;
-  padding: 10px 18px;
-  border: none;
-  border-radius: 6px;
-  cursor: pointer;
-  font-size: 15px;
-  font-weight: 500;
-  margin-top: 20px;
-  box-shadow: 0 2px 6px rgba(40, 167, 69, 0.4);
-  transition: background-color 0.3s ease, transform 0.2s ease;
-}
-
-#generateReportBtn i {
-  margin-right: 6px;
-}
-
-#generateReportBtn:hover {
-  background-color: #1e7e34;
-  transform: translateY(-1px);
-}
-
-.input-azul {
-  background-color: #d0e7ff;
-  border: 1px solid #aaa;
+table th,
+table td {
   padding: 4px;
-  border-radius: 4px;
-}
-
-input[readonly] {
-  background-color: #f9f9f9;
-  border: 1px solid #ccc;
-  color: #333;
-}
-
-.input-manual {
-  background-color: #95c8ff !important;
-}
-
-.input-manual-amarelo {
-  background-color: #e3ff67 !important;
-}
-
-.input-manual-MVVM {
-  background-color: #fc2525 !important;
-}
-
-.input-auto {
-  background-color: #e9ecef !important;
-  pointer-events: none;
-  border: 1px solid #ccc;
-}
-
-.volume-resultado {
-  background-color: #f8f9fa;
-  border: 1px solid #ddd;
-  border-radius: 6px;
-  padding: 0.5rem 0.75rem;
-  margin-bottom: 1rem;
-  font-size: 0.95rem;
-  color: #555;
-}
-
-.volume-display {
-  display: inline-block;
-  margin-left: 8px;
-  font-weight: bold;
-  color: #888;
-}
-
-.h1VolAE {
-  color: #034a74;
+  border: 1px solid #d1d5db;
   text-align: center;
-  margin-bottom: 1rem;
-  font-size: 1.5rem;
-  font-weight: bold;
+  font-size: 11px;
 }
 
-input.input-manual::placeholder {
-  color: #fff;
-  font-style: italic;
-  font-size: 0.95rem;
-  opacity: 1;
-  font-weight: bold;
+.numeracao {
+  font-size: 11px;
+  font-weight: 600;
+  color: #0f172a;
 }
 
-.modal {
-  display: none;
-  position: fixed;
-  z-index: 1000;
-  top: 0;
-  right: 0;
-  width: 39%;
-  height: 100%;
-  background-color: rgba(247, 245, 245, 0);
-  justify-content: flex-end;
-  align-items: flex-start;
-  padding-top: 1;
-}
-
-.modal-content {
-  background-color: rgb(255, 249, 249);
-  padding: 5px;
-  border-radius: 12px 0 0 12px;
+/* Inputs da planilha */
+table td input {
   width: 100%;
-  height: 100%;
-  overflow-y: auto;
-  box-shadow: -4px 0 20px rgb(241, 241, 241);
-  position: relative;
-}
-
-.modal-content textarea {
-  width: 100%;
-  resize: vertical;
-  font-size: 1rem;
-  padding: 5px;
-  box-sizing: border-box;
-}
-
-.close {
-  position: absolute;
-  top: 10px;
-  right: 16px;
-  font-size: 1.5rem;
-  font-weight: bold;
-  color: #555;
-  cursor: pointer;
-}
-
-.copy-container {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  margin-top: 1rem;
-}
-
-#copyStatus {
-  margin-left: 1rem;
-  font-weight: bold;
-}
-
-#reportContainer textarea {
-  width: 100%;
-  height: 400px;
-  padding: 10px;
-  font-size: 14px;
-  resize: vertical;
-  box-sizing: border-box;
-}
-
-.btn-voltar {
-  height: 34px;
-  display: inline-block;
-  padding: 8px 16px 0px 10px;
-  background-color: #007BFF;
-  color: white;
-  text-decoration: none;
-  border-radius: 6px;
-  font-weight: bold;
-  font-size: 14px;
-  transition: background-color 0.3s ease;
-}
-
-.btn-voltar:hover {
-  background-color: #0056b3;
-}
-
-.btn-voltar i {
-  margin-right: 4px;
-}
-
-.form-row-group {
-  display: flex;
-  gap: 4px;
-  flex-wrap: wrap;
-  align-items: flex-end;
-  padding-left: 15px;
-  padding-bottom: 2%;
-}
-
-.form-row-name {
-  flex: 2;
-  display: flex;
-  flex-direction: column;
-}
-
-.form-row-idade,
-.form-row-peso,
-.form-row-altura {
-  width: 50px;
-}
-
-.form-row {
-  flex: 1;
-  display: flex;
-  flex-direction: column;
-  min-width: 80px;
-}
-
-.form-row-name input,
-.form-row {
-  margin: 0;
-  padding: 0;
-}
-
-label {
-  margin-bottom: 4px;
-  font-weight: 500;
-  font-size: 14px;
-}
-
-.btn-expandir {
-  background-color: #007bff;
-  color: white;
-  padding: 8px 14px;
+  padding: 4px 2px;
+  text-align: center;
+  border-radius: 4px;
   border: none;
-  border-radius: 8px;
-  font-size: 15px;
-  cursor: pointer;
-  display: flex;
-  align-items: center;
-  gap: 8px;
-  margin-bottom: 10px;
-  transition: background-color 0.3s;
+  font-size: 11px;
+  background: transparent;
 }
 
-.btn-expandir:hover {
-  background-color: #0056b3;
+/* Aparência Excel */
+.volume-table {
+  width: 100%;
+  border-collapse: collapse;
+  background-color: #ffffff;
+  box-shadow: 0 2px 6px rgba(15, 23, 42, 0.05);
+}
+
+.volume-table th,
+.volume-table td {
+  border: 1px solid #cbd5e1;
+  padding: 0;
+  text-align: center;
+  height: 38px;
+}
+
+/* Inputs da planilha */
+.volume-input {
+  width: 100%;
+  height: 100%;
+  font-size: 12px;
+  font-weight: 500;
+  padding: 0;
+  border: none;
+  background-color: #f8fafc;
+  text-align: center;
+  box-sizing: border-box;
+}
+
+.volume-input:focus {
+  outline: none;
+  background-color: #e0f2fe;
+}
+
+/* Remove setas dos number */
+input[type="number"]::-webkit-inner-spin-button,
+input[type="number"]::-webkit-outer-spin-button {
+  -webkit-appearance: none;
+  margin: 0;
+}
+input[type="number"] {
+  -moz-appearance: textfield;
+}
+
+/* ===========================
+   BLOCOS VE / VD / AE / AD (acima)
+=========================== */
+
+.container-VEesquerdo,
+.containerVDdireito,
+.containerAE,
+.container-ADdireito {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  margin-top: 6px;
+}
+
+.container-VEesquerdo .bloco,
+.containerVDdireito .bloco,
+.containerAE .bloco,
+.container-ADdireito .bloco {
+  background: #ffffff;
+  border-radius: 14px;
+  padding: 10px 12px;
+  box-shadow: 0 14px 30px rgba(15, 23, 42, 0.05);
+  border: 1px solid rgba(148, 163, 184, 0.3);
 }
 
 .conteudo-escondido {
-  display: none;
+  background: #f9fafb;
+  border-radius: 8px;
+  padding: 8px;
+}
+
+.h1VolAE {
+  color: #0f3c66;
+  text-align: center;
+  margin-bottom: 6px;
+  font-size: 12px;
+  font-weight: 700;
+}
+
+/* ===========================
+   INPUTS – CORES ESPECIAIS
+=========================== */
+
+.input-manual {
+  background-color: #dbeafe !important;
+}
+
+.input-manual-amarelo {
+  background-color: #fef9c3 !important;
+}
+
+.input-manual-MVVM {
+  background-color: #16a34a !important;
+  color: #ffffff;
+  font-weight: 600;
+}
+
+.input-auto {
+  background-color: #f1f5f9 !important;
+  pointer-events: none;
+  border: 1px solid #cbd5e1;
+}
+
+.input-manual-azul {
+  background-color: #dbeafe !important;
+}
+
+input[readonly] {
+  color: #374151;
+}
+
+/* Destaques de normalidade */
+.destacado-vermelho {
+  background-color: #fef2f2;
+  border: 1px solid #dc2626;
+  color: #7f1d1d;
+}
+
+.destacado-amarelo {
+  background-color: #fffbeb;
+  border: 1px solid #f59e0b;
+  color: #78350f;
+}
+
+/* ===========================
+   RESULTADOS FINAIS – 4 BLOCOS
+=========================== */
+
+.container-resultados {
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: flex-start;
+  padding: 8px 0;
+  margin-top: 16px;
+  box-sizing: border-box;
+}
+
+#tabelasResultadosFinais {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+  width: 100%;
+  justify-content: space-between;
+  align-items: flex-start;
+}
+
+/* Card base */
+.bloco-tabela {
+  flex: 1 1 calc(25% - 10px);
+  min-width: 190px;
+  max-width: 25%;
+  box-sizing: border-box;
+}
+
+/* Responsivo */
+@media (max-width: 1024px) {
+  .bloco-tabela {
+    flex: 1 1 calc(50% - 10px);
+    max-width: 50%;
+  }
+}
+@media (max-width: 640px) {
+  .wrapper {
+    width: 100vw;
+    margin-right: 0;
+  }
+  .editor-container {
+    position: static;
+    width: 100%;
+    height: auto;
+  }
+  .bloco-tabela {
+    flex: 1 1 100%;
+    max-width: 100%;
+  }
+}
+
+/* ===========================
+   VALORES DE REFERÊNCIA
+=========================== */
+
+.valores-referencia-box {
+  background: #e0f2fe;
   padding: 10px;
-  border-left: 4px solid #007bff;
-  background: #f9f9f9;
-  border-radius: 6px;
+  border-radius: 12px;
+  margin-top: 6px;
+  border: 1px solid #bae6fd;
+}
+
+.titulo-referencia {
+  font-size: 13px;
+  font-weight: 700;
+  text-align: center;
+  color: #0f3c66;
+  margin-bottom: 8px;
+  letter-spacing: 0.06em;
+}
+
+.referencia-blocos {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 6px;
+}
+
+.referencia-item {
+  background-color: #0e7490;
+  padding: 10px;
+  min-height: 70px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-size: 13px;
+  color: #e5e7eb;
+  font-weight: 600;
+  border-radius: 10px;
+  box-shadow: 0 10px 26px rgba(15, 23, 42, 0.25);
+}
+
+/* ===========================
+   MAPAS / ALERTA
+=========================== */
+
+.mapa-alerta {
+  margin-top: 10px;
+  text-align: center;
+  padding: 12px 10px;
+  background-color: #f9fafb;
+  border-left: 4px solid #0e7490;
+  border-radius: 10px;
+  font-size: 14px;
+  color: #374151;
+  box-shadow: 0 6px 14px rgba(15, 23, 42, 0.06);
+}
+
+.mapa-alerta .link-mapas {
+  font-weight: 600;
+  color: #0e7490;
+  text-decoration: none;
+  margin-left: 6px;
+  transition: color 0.15s ease;
+}
+
+.mapa-alerta .link-mapas:hover {
+  color: #0369a1;
+  text-decoration: underline;
+}
+
+/* ===========================
+   BOTÃO GERAR LAUDO
+=========================== */
+
+.container-botaoGeradordeTexto {
+  margin-top: 6px;
+  width: 100%;
+  display: flex;
+  justify-content: flex-start;
+}
+
+#generateReportBtn {
+  background: linear-gradient(135deg, #22c55e, #16a34a);
+  color: #f9fafb;
+  padding: 9px 18px;
+  border: none;
+  border-radius: 999px;
+  cursor: pointer;
+  font-size: 14px;
+  font-weight: 600;
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  box-shadow: 0 12px 28px rgba(22, 163, 74, 0.4);
+  transition: transform 0.1s ease, box-shadow 0.1s ease, filter 0.1s ease;
+}
+
+#generateReportBtn i {
+  font-size: 15px;
+}
+
+#generateReportBtn:hover {
+  transform: translateY(-1px);
+  filter: brightness(1.05);
+  box-shadow: 0 16px 34px rgba(22, 163, 74, 0.55);
+}
+
+/* ===========================
+   BOTÃO COPIAR LAUDO
+=========================== */
+
+.btn-copiar {
+  margin: 0;
+  border: none;
+  border-top: 1px solid #e5e7eb;
+  background: linear-gradient(90deg, #0e7490, #0369a1);
+  color: #f9fafb;
+  font-weight: 600;
+  padding: 12px 18px;
+  font-size: 13px;
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  width: 100%;
+  border-radius: 0 0 12px 12px;
+  box-shadow: 0 -1px 0 rgba(15, 23, 42, 0.05);
+  transition: transform 0.08s ease, box-shadow 0.08s ease, filter 0.08s ease;
+}
+
+.btn-copiar i {
+  font-size: 15px;
+}
+
+.btn-copiar:hover {
+  filter: brightness(1.08);
+  transform: translateY(-1px);
+  box-shadow: 0 -3px 10px rgba(15, 23, 42, 0.25);
+}
+
+.btn-copiar:active {
+  transform: translateY(0);
+  box-shadow: 0 -1px 4px rgba(15, 23, 42, 0.15);
+}
+
+/* ===========================
+   EDITOR FIXO (DIREITA)
+=========================== */
+
+.editor-container {
+  position: fixed;
+  top: 0;
+  right: 0;
+  width: 50vw;
+  height: 100vh;
+  display: flex;
+  flex-direction: column;
+  background: #ffffff;
+  box-shadow: -12px 0 30px rgba(15, 23, 42, 0.2);
+  border-left: 1px solid #e5e7eb;
+  z-index: 20;
+}
+
+/* Cabeçalho editor */
+.editor-header {
+  padding: 10px 18px;
+  border-bottom: 1px solid #e5e7eb;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  font-weight: 600;
+  background: linear-gradient(to right, #0e7490, #0369a1);
+  color: #f9fafb;
+  font-size: 14px;
+}
+
+.editor-header i {
+  font-size: 16px;
+}
+
+/* Wrapper interno */
+.me-editor-wrapper {
+  display: flex;
+  flex-direction: column;
+  flex: 1;
+  height: 100%;
+  min-height: 0;
+}
+
+/* Toolbar do editor */
+.me-editor-toolbar {
+  padding: 8px 10px;
+  border-bottom: 1px solid #e5e7eb;
+  background: #f9fafb;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 4px;
+  align-items: center;
+}
+
+.me-toolbar-section {
+  display: inline-flex;
+  align-items: center;
+  border-radius: 999px;
+  background: #ffffff;
+  padding: 3px;
+  border: 1px solid #e5e7eb;
+  margin-right: 4px;
+  gap: 2px;
+}
+
+.me-toolbar-label {
+  font-size: 11px;
+  color: #6b7280;
+  padding: 0 6px;
+  border-right: 1px solid #e5e7eb;
+  margin-right: 2px;
+  white-space: nowrap;
+}
+
+.me-toolbar-btn {
+  border: none;
+  background: transparent;
+  padding: 4px 6px;
+  border-radius: 999px;
+  cursor: pointer;
+  font-size: 13px;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 4px;
+  color: #4b5563;
+}
+
+.me-toolbar-btn:hover {
+  background: #e0f2fe;
+  color: #0369a1;
+}
+
+.me-toolbar-select {
+  border: none;
+  background: transparent;
+  padding: 3px 6px;
+  font-size: 13px;
+  border-radius: 999px;
+  color: #374151;
+  cursor: pointer;
+  outline: none;
+}
+
+/* Área do editor */
+.me-editor-main {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  min-height: 0;
+}
+
+.me-editor-area {
+  flex: 1;
+  min-height: 0;
+  overflow-y: auto;
+  padding: 12px 16px 16px;
+  background: #fdfdfd;
+}
+
+/* Conteúdo editável */
+#editor {
+  min-height: 100%;
+  outline: none;
+  font-size: 14px;
+  line-height: 1.5;
+  color: #111827;
+  letter-spacing: 0.01em;
+}
+
+#editor:empty::before {
+  content: "Comece a digitar o laudo aqui...";
+  color: #9ca3af;
+}
+
+/* Statusbar */
+.me-editor-statusbar {
+  font-size: 11px;
+  padding: 6px 14px;
+  border-top: 1px solid #e5e7eb;
+  background: #f9fafb;
+  color: #6b7280;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.me-pill {
+  display: inline-flex;
+  padding: 2px 8px;
+  border-radius: 999px;
+  border: 1px solid #a5b4fc;
+  background: #eef2ff;
+  font-size: 11px;
+  color: #3730a3;
+  gap: 6px;
+  align-items: center;
+}
+
+.me-pill-dot {
+  width: 6px;
+  height: 6px;
+  border-radius: 999px;
+  background: #22c55e;
+}
+
+/* ===========================
+   BLOCOS EXPANSÍVEIS RESULTADOS
+=========================== */
+
+/* Card de cada bloco */
+.bloco-tabela {
+  background: #ffffff;
+  border-radius: 12px;
+  margin-bottom: 12px;
+  overflow: hidden;
+  box-shadow: 0 8px 20px rgba(15, 23, 42, 0.08);
+  border: 1px solid #dbeafe;
+}
+
+/* Cabeçalho clicável */
+.bloco-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 8px 12px;
+  cursor: pointer;
+  background: linear-gradient(90deg, #e0f2fe, #dbeafe);
+}
+
+.bloco-header:hover {
+  background: linear-gradient(90deg, #cfeafe, #d1e9ff);
+}
+
+.bloco-header .titulo-resultado {
+  margin: 0;
+  font-size: 13px;
+  color: #0f3c66;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+}
+
+/* Seta */
+.icone-seta {
+  font-size: 16px;
+  color: #0369a1;
+  transition: transform 0.25s ease;
+}
+
+/* Conteúdo com animação de abrir/fechar */
+.bloco-conteudo {
+  max-height: 1000px;
+  overflow: hidden;
+  transition: max-height 0.3s ease, opacity 0.3s ease;
+  opacity: 1;
+  background: #ffffff;
+}
+
+.bloco-conteudo table {
+  width: 100%;
+  border-collapse: collapse;
+}
+
+.bloco-conteudo th,
+.bloco-conteudo td {
+  font-size: 11px;
+  padding: 4px 6px;
+  text-align: center;
+  border: 1px solid #e5e7eb;
+}
+
+.bloco-conteudo th {
+  background: #eff6ff;
+  color: #0f3c66;
+  font-weight: 600;
+}
+
+.bloco-conteudo tr:nth-child(even) td {
+  background: #f9fafb;
+}
+
+/* Quando estiver fechado */
+.bloco-tabela.fechado .bloco-conteudo {
+  max-height: 0;
+  opacity: 0;
+}
+
+/* Girar seta quando fechar */
+.bloco-tabela.fechado .icone-seta {
+  transform: rotate(-90deg);
+}
+
+/* ===========================
+   CABEÇALHO: ORDEM DOS CAMPOS
+   Voltar | Idade | Sexo | [Altura/Peso] | ASC | [Referência/Função]
+=========================== */
+
+/* Cabeçalho: Voltar | Idade | Sexo | [Altura/Peso] | ASC | [Referência/Função] */
+.container-cadastro .patient-info {
+  max-width: 1200px;
+  width: 100%;
+  margin: 0;             /* gruda no lado esquerdo do wrapper */
+  overflow: hidden;
+}
+
+
+.container-cadastro .form-row-group.horizontal-group {
+  width: 100%;
+  display: grid;
+  grid-template-columns:
+    auto                        /* Voltar */
+    minmax(80px, 0.7fr)         /* Idade */
+    minmax(110px, 0.9fr)        /* Sexo */
+    minmax(120px, 1fr)          /* Altura/Peso */
+    minmax(130px, 0.9fr)        /* ASC */
+    minmax(240px, 1.2fr);       /* Referência + Função */
+  column-gap: 14px;
+  row-gap: 6px;
+  align-items: flex-start;
+}
+
+/* Botão Voltar centralizado verticalmente */
+.container-cadastro .form-row-group.horizontal-group .voltar {
+  align-self: center;
+}
+
+/* Wrapper Altura + Peso na mesma coluna */
+.campo-altura-peso {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+}
+
+/* Coluna direita: Referência em cima, Função embaixo */
+.field-ref-funcao {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+  width: 100%;
+}
+
+.field-ref-funcao .form-field-selecionar,
+.field-ref-funcao .funcoes-cardiacas-container {
+  width: 100%;
+}
+
+/* ASC em card destacado mas mais compacto para caber bem */
+.field-asc-bloco {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  padding: 6px 10px;
+  border-radius: 14px;
+  background: linear-gradient(145deg, #f9fafb, #e5edf7);
+  box-shadow: 0 8px 18px rgba(15, 23, 42, 0.12);
+  min-width: 130px;
+}
+
+.field-asc-bloco input {
+  min-height: 48px;
+}
+
+/* Campos pequenos na linha do cabeçalho */
+.small-field input,
+.small-field select {
+  padding: 4px 8px;
+  height: 30px;
+  font-size: 12px;
+}
+
+/* Select de sexo não ficar gigante */
+#sexo {
+  width: 100%;
+  min-width: 0;
+}
+
+/* Espaço ligeiramente maior depois do campo idade */
+.campo-idade {
+  margin-right: 6px;
+}
+/* ===========================
+   CABEÇALHO PACIENTE – VERSÃO PREMIUM
+   (mantém mesma formação, só embeleza)
+=========================== */
+
+/* Card principal mais "glass" */
+.patient-info {
+  background: radial-gradient(circle at top left, #ecfeff 0, #ffffff 55%, #f1f5f9 100%);
+  border-radius: 18px;
+  padding: 14px 18px;
+  box-shadow:
+    0 18px 40px rgba(15, 23, 42, 0.10),
+    0 0 0 1px rgba(148, 163, 184, 0.18);
+  border: 1px solid rgba(148, 163, 184, 0.25);
+  position: relative;
+  overflow: hidden;
+}
+
+/* Faixa suave no topo do card */
+.patient-info::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  height: 48px;
+  background: linear-gradient(90deg, rgba(14,116,144,0.09), rgba(3,105,161,0.04));
+  pointer-events: none;
+}
+
+/* Grid do cabeçalho */
+.container-cadastro .form-row-group.horizontal-group {
+  position: relative;
+  z-index: 1;
+  width: 100%;
+  display: grid;
+  grid-template-columns:
+    auto                        /* Voltar */
+    minmax(90px, 0.7fr)         /* Idade */
+    minmax(120px, 0.9fr)        /* Sexo  */
+    minmax(140px, 1fr)          /* Altura/Peso */
+    minmax(140px, 0.9fr)        /* ASC   */
+    minmax(260px, 1.2fr);       /* Referência/Função */
+  column-gap: 26px;
+  row-gap: 8px;
+  align-items: flex-start;
+}
+
+/* Botão voltar levemente deslocado da borda */
+.container-cadastro .form-row-group.horizontal-group .voltar {
+  align-self: center;
+  padding-left: 4px;
+}
+
+/* Labels mais delicados */
+.form-field label,
+.form-field-selecionar label,
+.funcoes-titulo {
+  font-weight: 600;
+  margin-bottom: 2px;
+  font-size: 10px;
+  color: #6b7280;
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+}
+
+/* Inputs do cabeçalho com estética "pill" */
+.form-field input,
+.form-field select,
+.form-field-selecionar select {
+  padding: 6px 10px !important;
+  height: 32px !important;
+  font-size: 13px !important;
+  border-radius: 999px;
+  border: 1px solid #d0e2f2;
+  background: radial-gradient(circle at top left, #f9fafb 0, #f3f4f6 55%, #e5edf7 100%);
+  box-shadow:
+    0 0 0 1px rgba(255, 255, 255, 0.6),
+    0 1px 3px rgba(15, 23, 42, 0.08);
+  transition:
+    border-color 0.16s ease,
+    box-shadow 0.16s ease,
+    background 0.16s ease,
+    transform 0.06s ease;
+}
+
+.form-field input:focus,
+.form-field select:focus,
+.form-field-selecionar select:focus {
+  border-color: #0e7490;
+  background: #ffffff;
+  box-shadow:
+    0 0 0 1px rgba(14, 116, 144, 0.35),
+    0 8px 18px rgba(15, 23, 42, 0.12);
+  transform: translateY(-0.5px);
+}
+
+/* Campo IDADE um pouco mais próximo do Voltar, mas com respiro */
+.campo-idade {
+  margin-left: 2px;
+}
+
+/* Altura em cima + Peso embaixo, com bloco discreto */
+.campo-altura-peso {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+  padding: 3px 0;
+}
+
+/* ASC em card "diferentão" */
+.field-asc-bloco {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  padding: 6px 12px;
+  border-radius: 16px;
+  background: linear-gradient(145deg, #fefefe, #e5edf7);
+  box-shadow:
+    0 10px 24px rgba(15, 23, 42, 0.16),
+    0 0 0 1px rgba(148, 163, 184, 0.20);
+  min-width: 140px;
+}
+
+.field-asc-bloco label {
+  margin-bottom: 4px;
+  font-size: 10px;
+  color: #64748b;
+  letter-spacing: 0.10em;
+}
+
+.field-asc-bloco input {
+  min-height: 50px;
+  border-radius: 12px;
+  border: 1px solid #cbd5e1;
+  background: radial-gradient(circle at top, #ffffff 0, #e5edf7 100%);
+  font-size: 16px;
+  font-weight: 700;
+  text-align: center;
+  color: #0f172a;
+}
+
+/* Coluna direita: Referência em cima, Função embaixo, com divisão sutil */
+.field-ref-funcao {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+}
+
+.field-ref-funcao .form-field-selecionar,
+.field-ref-funcao .funcoes-cardiacas-container {
+  width: 100%;
+}
+
+.field-ref-funcao .form-field-selecionar select,
+.field-ref-funcao .funcoes-cardiacas-container select {
+  border-radius: 10px;
+}
+
+/* Separador vertical suave antes da coluna de referência */
+.field-ref-funcao {
+  position: relative;
+}
+.field-ref-funcao::before {
+  content: "";
+  position: absolute;
+  left: -10px;
+  top: 4px;
+  bottom: 4px;
+  width: 1px;
+  background: linear-gradient(to bottom, transparent, rgba(148, 163, 184, 0.6), transparent);
+}
+
+/* Select de sexo sem ficar gigante e alinhado */
+#sexo {
+  width: 100%;
+  min-width: 0;
+  
+}
+
+/* Botão Voltar com glow mais discreto (combina com o resto) */
+.btn-voltar {
+  padding: 8px 18px;
+  border-radius: 999px;
+  box-shadow:
+    0 12px 24px rgba(14, 116, 144, 0.45),
+    0 0 0 1px rgba(255, 255, 255, 0.8);
+}
+
+/* Afinar a sombra do card quando passar o mouse em qualquer campo (sensação de interação) */
+.patient-info:hover {
+  box-shadow:
+    0 22px 50px rgba(15, 23, 42, 0.16),
+    0 0 0 1px rgba(148, 163, 184, 0.30);
+}
+
+.coluna-escondida {
+  display: none;
+}
+
+/* Layout em 3 colunas: VE | VD | ÁTRIOS */
+#tabelasResultadosFinais{
+  display: grid !important;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 10px !important;
+  align-items: start;
+}
+
+/* AE em cima / AD embaixo */
+.coluna-atrios{
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+/* Responsivo */
+@media (max-width: 1100px){
+  #tabelasResultadosFinais{
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+  .coluna-atrios{
+    grid-column: 1 / -1; /* ocupa a linha inteira */
+  }
+}
+
+@media (max-width: 640px){
+  #tabelasResultadosFinais{
+    grid-template-columns: 1fr;
+  }
+  .coluna-atrios{
+    grid-column: auto;
+  }
+}
+/* =========================
+   COMPACT MODE (RESULTADOS)
+   ========================= */
+
+/* Menos “ar” geral na coluna esquerda */
+.wrapper{
+  padding: 10px 12px 14px !important;
+}
+
+.main-container{
+  gap: 8px !important;
+}
+
+/* Aproxima planilha dos blocos */
+.container-planilha{
+  padding: 8px 10px 10px !important;
+  border-radius: 12px !important;
+}
+.planilha-titulo{
+  margin-bottom: 4px !important;
+}
+
+/* Tabela da planilha mais “fininha” */
+#cardiacVolumeTable th,
+#cardiacVolumeTable td{
+  padding: 2px 3px !important;
+  font-size: 10px !important;
+}
+#cardiacVolumeTable td input{
+  padding: 2px 0 !important;
+  font-size: 10px !important;
+  height: 20px !important;
+}
+
+/* Remove margens “sobrando” que afastam os blocos */
+.container-resultados{
+  margin-top: 6px !important;
+  padding: 4px 0 !important;
+}
+
+/* Grid dos 3 blocos: mais junto e sem “esticar” demais */
+#tabelasResultadosFinais{
+  gap: 8px !important;
+  align-items: start !important;
+}
+
+/* Cards menores e com menos padding interno */
+.bloco-tabela{
+  border-radius: 10px !important;
+  box-shadow: 0 6px 16px rgba(15, 23, 42, 0.08) !important;
+  border: 1px solid rgba(219, 234, 254, 0.9) !important;
+}
+
+/* Cabeçalho menor (menos altura) */
+.bloco-header{
+  padding: 6px 10px !important;
+}
+.bloco-header .titulo-resultado{
+  font-size: 12px !important;
+  letter-spacing: 0.04em !important;
+}
+.icone-seta{
+  font-size: 14px !important;
+}
+
+/* Conteúdo: menos padding e linhas mais compactas */
+.bloco-conteudo{
+  background: #fff !important;
+}
+.bloco-conteudo table{
+  margin-top: 0 !important;
+}
+.bloco-conteudo th,
+.bloco-conteudo td{
+  font-size: 10px !important;
+  padding: 3px 5px !important;
+}
+
+/* Inputs dos cards: compactos e alinhados */
+.bloco-conteudo input{
+  height: 22px !important;
+  padding: 0 6px !important;
+  font-size: 10px !important;
+  border-radius: 6px !important;
+}
+
+/* Coluna de átrios: aproxima AE de AD */
+.coluna-atrios{
+  gap: 8px !important;
+}
+
+/* Se você quiser “cara de tabela” mais clean */
+.bloco-conteudo th{
+  background: #eef6ff !important;
+}
+.bloco-conteudo tr:nth-child(even) td{
+  background: #fbfdff !important;
+}
+
+/* Deixa a planilha e os cards mais “colados” visualmente */
+.container-planilha + .container-resultados{
+  margin-top: 2px !important;
+}
+
+/* Opcional: diminui o “efeito sanfona” (menos altura máxima) */
+.bloco-conteudo{
+  max-height: 720px !important;
+}
+
+
+/* COMPACTAR O CABEÇALHO (topo) */
+.patient-info{
+  padding: 10px 12px !important;
+}
+
+.container-cadastro .form-row-group.horizontal-group{
+  column-gap: 10px !important;
+  row-gap: 4px !important;
+}
+
+.form-field label,
+.form-field-selecionar label,
+.funcoes-titulo{
+  margin-bottom: 0 !important;
+}
+
+.form-field input,
+.form-field select,
+.form-field-selecionar select{
+  height: 28px !important;
+  padding: 4px 8px !important;
+}
+
+.field-asc-bloco{
+  padding: 6px 10px !important;
+  min-width: 120px !important;
+}
+.field-asc-bloco input{
+  min-height: 40px !important;
+}
+
+/* ===========================
+   FIX: remover espaço “fantasma”
+   (containers vazios acima dos Resultados)
+=========================== */
+
+/* Esses 4 blocos estão vazios no print e só criam espaçamento.
+   Se você voltar a usar no modo "Manual", é só o JS adicionar .is-visible */
+.container-VEesquerdo,
+.containerVDdireito,
+.containerAE,
+.container-ADdireito,
+.container-tabelas-finais {
+  display: none !important;
+}
+
+.container-VEesquerdo.is-visible,
+.containerVDdireito.is-visible,
+.containerAE.is-visible,
+.container-ADdireito.is-visible,
+.container-tabelas-finais.is-visible {
+  display: flex !important;
+}
+
+/* ===========================
+   RESULTADOS FINAIS — painel “preenchido”
+=========================== */
+
+
+/* Mata regras antigas de flex/max-width que “quebram” o grid */
+#tabelasResultadosFinais .bloco-tabela{
+  flex: initial !important;
+  max-width: none !important;
+  min-width: 0 !important;
+  width: auto !important;
+}
+
+/* Grid que ocupa “bonito” a largura toda */
+#tabelasResultadosFinais{
+  display: grid !important;
+  grid-template-columns: 1.25fr 1.05fr 0.95fr; /* VE maior, VD médio, ÁTRIOS menor */
+  gap: 12px !important;
+  align-items: stretch;
+}
+
+/* Coluna dos átrios empilhada e ocupando a altura */
+.coluna-atrios{
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  height: 100%;
+}
+.coluna-atrios .bloco-tabela{
+  flex: 1;
+}
+
+/* Cards: mesma altura, mais “premium” */
+#tabelasResultadosFinais .bloco-tabela{
+  height: 100%;
+  margin: 0 !important;
+  border-radius: 14px !important;
+  overflow: hidden;
+}
+
+/* Deixa o conteúdo preencher melhor */
+#tabelasResultadosFinais .bloco-conteudo{
+  height: calc(100% - 42px); /* cabeçalho ~42px */
+  overflow: auto;
+}
+
+/* Responsivo: 2 colunas e depois 1 */
+@media (max-width: 1200px){
+  #tabelasResultadosFinais{
+    grid-template-columns: 1fr 1fr;
+  }
+  .coluna-atrios{
+    grid-column: 1 / -1;
+    flex-direction: row;
+  }
+  .coluna-atrios .bloco-tabela{
+    flex: 1;
+  }
+}
+
+@media (max-width: 720px){
+  #tabelasResultadosFinais{
+    grid-template-columns: 1fr;
+  }
+  .coluna-atrios{
+    grid-column: auto;
+    flex-direction: column;
+  }
+}
+
+/* =========================================================
+   PATCH FINAL (COLAR NO FIM DO homem.css)
+   - resolve: scroll no VE, branco no VD, grid preenchendo tela
+   - neutraliza regras duplicadas antigas
+========================================================= */
+
+/* ----- Wrapper: deixa a coluna esquerda mais limpa ----- */
+.wrapper{
+  padding: 10px 12px 14px !important;
+}
+
+/* =========================================================
+   CABEÇALHO (topo) — UMA ÚNICA REGRA (sem briga flex x grid)
+========================================================= */
+.container-cadastro{
+  justify-content: flex-start !important;
+}
+
+.container-cadastro .patient-info{
+  width: 100% !important;
+  max-width: 1200px !important;
+  margin: 0 !important;
+  padding: 10px 12px !important;
+  border-radius: 18px !important;
+  overflow: hidden !important;
+
+  background: radial-gradient(circle at top left, #ecfeff 0, #ffffff 55%, #f1f5f9 100%) !important;
+  box-shadow: 0 18px 40px rgba(15, 23, 42, 0.10), 0 0 0 1px rgba(148, 163, 184, 0.18) !important;
+  border: 1px solid rgba(148, 163, 184, 0.25) !important;
+  position: relative !important;
+}
+
+.container-cadastro .patient-info::before{
+  content:"";
+  position:absolute;
+  inset:0;
+  height:48px;
+  background: linear-gradient(90deg, rgba(14,116,144,0.09), rgba(3,105,161,0.04));
+  pointer-events:none;
+}
+
+.container-cadastro .form-row-group.horizontal-group{
+  position: relative;
+  z-index: 1;
+
+  display: grid !important;
+  grid-template-columns:
+    auto
+    minmax(90px, .7fr)
+    minmax(120px, .9fr)
+    minmax(140px, 1fr)
+    minmax(140px, .9fr)
+    minmax(260px, 1.2fr) !important;
+  column-gap: 22px !important;
+  row-gap: 4px !important;
+  align-items: start !important;
+
+  /* mata o flex antigo */
+  flex-wrap: unset !important;
+}
+
+.container-cadastro .form-row-group.horizontal-group .voltar{
+  align-self: center !important;
+}
+
+.form-field label,
+.form-field-selecionar label,
+.funcoes-titulo{
+  margin-bottom: 0 !important;
+  font-size: 10px !important;
+}
+
+.form-field input,
+.form-field select,
+.form-field-selecionar select{
+  height: 28px !important;
+  padding: 4px 8px !important;
+  border-radius: 999px !important;
+}
+
+#sexo{
+  width: 100% !important;
+  min-width: 0 !important;
+}
+
+/* Altura/Peso em coluna */
+.campo-altura-peso{
+  display:flex !important;
+  flex-direction: column !important;
+  gap: 4px !important;
+}
+
+/* ASC compacto */
+.field-asc-bloco{
+  padding: 6px 10px !important;
+  min-width: 120px !important;
+  border-radius: 16px !important;
+}
+.field-asc-bloco input{
+  min-height: 40px !important;
+  border-radius: 12px !important;
+  font-weight: 700 !important;
+}
+
+/* =========================================================
+   REMOVER “FANTASMAS” (containers vazios acima)
+========================================================= */
+.container-tabelas-finais,
+.container-VEesquerdo,
+.containerVDdireito,
+.containerAE,
+.container-ADdireito{
+  display:none !important;
+}
+.container-tabelas-finais.is-visible,
+.container-VEesquerdo.is-visible,
+.containerVDdireito.is-visible,
+.containerAE.is-visible,
+.container-ADdireito.is-visible{
+  display:flex !important;
+}
+
+/* =========================================================
+   RESULTADOS FINAIS — GRID “BONITO” (preenche a tela)
+========================================================= */
+.container-resultados{
+  /* mata o flex antigo que criava espaços */
+  display:block !important;
+  width:100% !important;
+  margin-top: 8px !important;
+  padding: 12px !important;
+
+  background: linear-gradient(180deg, rgba(255,255,255,0.90), rgba(241,245,249,0.85)) !important;
+  border: 1px solid rgba(148, 163, 184, 0.35) !important;
+  border-radius: 14px !important;
+  box-shadow: 0 18px 40px rgba(15, 23, 42, 0.08) !important;
+}
+
+#tabelasResultadosFinais{
+  display:grid !important;
+  grid-template-columns: 1.25fr 1.05fr 0.95fr !important; /* VE maior */
+  gap: 12px !important;
+  align-items: start !important;
+}
+
+/* Neutraliza as regras antigas do .bloco-tabela (flex/max-width) */
+#tabelasResultadosFinais .bloco-tabela{
+  flex: initial !important;
+  max-width: none !important;
+  min-width: 0 !important;
+  width: auto !important;
+  margin: 0 !important;
+}
+
+/* Coluna átrios empilhada */
+.coluna-atrios{
+  display:flex !important;
+  flex-direction: column !important;
+  gap: 12px !important;
+}
+
+/* =========================================================
+   FIX 1: tirar o scroll do VE
+   - se ele estava com overflow/altura forçada, isso mata
+========================================================= */
+.bloco-ve .bloco-conteudo{
+  overflow: visible !important;
+  max-height: none !important;
+  height: auto !important;
+}
+
+/* =========================================================
+   FIX 2: tirar “parte branca” do VD
+   - VD não deve esticar para acompanhar VE
+========================================================= */
+.bloco-vd{
+  align-self: start !important;
+}
+.bloco-vd .bloco-conteudo{
+  overflow: visible !important;
+  max-height: none !important;
+  height: auto !important;
+}
+
+/* =========================================================
+   Responsivo
+========================================================= */
+@media (max-width: 1200px){
+  #tabelasResultadosFinais{
+    grid-template-columns: 1fr 1fr !important;
+  }
+  .coluna-atrios{
+    grid-column: 1 / -1 !important;
+    flex-direction: row !important;
+  }
+  .coluna-atrios .bloco-tabela{
+    flex: 1 !important;
+  }
+}
+
+@media (max-width: 720px){
+  #tabelasResultadosFinais{
+    grid-template-columns: 1fr !important;
+  }
+  .coluna-atrios{
+    grid-column: auto !important;
+    flex-direction: column !important;
+  }
+}
+
+
+
+.campo-sexo {
+  margin-right: 16px;
+}
+.campo-sexo {
+  min-width: 140px;
+}
+/* ===== PATCH: desgrudar SEXO de ALTURA ===== */
+.container-cadastro .form-row-group.horizontal-group{
+  display: grid !important;
+  column-gap: 28px !important; /* aumenta o espaço real entre as colunas */
+}
+
+/* força um espaço extra só entre Sexo e Altura/Peso */
+.container-cadastro .campo-altura-peso{
+  margin-left: 18px !important;
+}
+
+/* garante que o bloco do sexo não “invada” visualmente */
+.container-cadastro .campo-sexo{
+  padding-right: 6px !important;
+  justify-self: start !important;
 }

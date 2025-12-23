@@ -1,111 +1,115 @@
 body {
   margin: 0;
-  padding: 0;
   font-family: 'Segoe UI', sans-serif;
-  background-color: #f4f6f8;
-}
-
-.pagamento-wrapper {
-  max-width: 420px;
-  margin: 60px auto;
-  padding: 30px;
-  background: #ffffff;
-  border-radius: 12px;
-  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
-  position: relative;
-  box-sizing: border-box;
-}
-
-.formulario-pagamento h2 {
-  margin-top: 0;
-  margin-bottom: 10px;
-  font-size: 24px;
-  color: #222;
-  text-align: center;
-}
-
-.subtitulo {
-  font-size: 15px;
-  margin-bottom: 20px;
-  color: #555;
-  text-align: center;
-}
-
-input[type="text"],
-input[type="email"] {
-  width: 100%;
-  padding: 10px 12px;
-  border: 1px solid #ccc;
-  border-radius: 8px;
-  margin-bottom: 15px;
-  font-size: 14px;
-  box-sizing: border-box;
-  transition: border-color 0.3s ease;
-}
-
-input:focus {
-  border-color: #00b894;
-  outline: none;
-}
-
-.inline {
+  background-color: #f1f1f1;
   display: flex;
-  gap: 10px;
+  align-items: center;
+  justify-content: center;
+  height: 100vh;
 }
 
-.inline input {
-  flex: 1;
-}
-
-.qrcode-section {
-  text-align: center;
-  margin-top: 25px;
-}
-
-.qrcode-img {
-  width: 220px;
-  max-width: 100%;
-  margin: 10px auto;
-  border-radius: 8px;
-  box-shadow: 0 2px 8px rgba(0,0,0,0.05);
-}
-
-.mercado-pago-btn {
-  display: block;
+.pagamento-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
   width: 100%;
+}
+
+.pagamento-card {
+  background: white;
+  padding: 30px;
+  border-radius: 12px;
   text-align: center;
-  background-color: #009ee3;
-  color: white;
-  text-decoration: none;
-  padding: 12px;
-  border-radius: 8px;
-  margin-top: 20px;
-  font-size: 16px;
-  font-weight: 600;
-  transition: background-color 0.3s ease;
+  max-width: 400px;
+  width: 100%;
+  box-shadow: 0 10px 25px rgba(0, 0, 0, 0.15);
+  position: relative;
 }
 
-.mercado-pago-btn:hover {
-  background-color: #007bbd;
-}
-
-.fechar {
+.close-btn {
   position: absolute;
+  right: 15px;
   top: 15px;
-  right: 20px;
+  border: none;
+  background: none;
+  font-size: 20px;
+  cursor: pointer;
+}
+
+h1 {
+  margin-bottom: 10px;
+  color: #2c3e50;
+}
+
+.descricao {
+  font-size: 1.1rem;
   color: #555;
-  text-decoration: none;
-  font-size: 18px;
-  transition: color 0.3s ease;
+  margin-bottom: 20px;
 }
 
-.fechar:hover {
-  color: #000;
+.qr-image {
+  width: 100%;
+  max-width: 280px;
+  margin: 20px auto;
+  display: block;
+  border: 1px solid #ddd;
+  border-radius: 10px;
 }
 
-.powered {
-  font-size: 12px;
-  color: #aaa;
-  text-align: center;
-  margin-top: 25px;
+.pix-codigo {
+  margin-top: 20px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+#pixCode {
+  width: 100%;
+  height: 100px;
+  padding: 10px;
+  font-size: 0.9rem;
+  border: 1px solid #ccc;
+  border-radius: 6px;
+  resize: none;
+  margin-bottom: 10px;
+}
+
+#copyBtn {
+  background-color: #f39c12;
+  color: white;
+  padding: 10px 16px;
+  border: none;
+  border-radius: 6px;
+  cursor: pointer;
+  font-weight: bold;
+}
+
+#copyBtn:hover {
+  background-color: #d78f0e;
+}
+
+.confirmar-btn {
+  margin-top: 20px;
+  background-color: #27ae60;
+  color: white;
+  padding: 12px 20px;
+  border: none;
+  border-radius: 8px;
+  font-weight: bold;
+  font-size: 1rem;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+  width: 100%;
+}
+
+.confirmar-btn:hover {
+  background-color: #219150;
+}
+
+
+.nome-pagador {
+  font-size: 1.1rem;
+  font-weight: bold;
+  color: #333;
+  margin-bottom: 10px;
 }
